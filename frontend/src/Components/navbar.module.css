@@ -114,7 +114,7 @@
 }
 
 .inputWithIcon input[type="text"] {
-  padding-left: 40px;
+  padding-left: 60px;
 }
 
 .inputWithIcon {
@@ -142,6 +142,13 @@
   padding: 15px;
   box-sizing: border-box;
   transition: 0.3s;
+}
+.phone::-webkit-inner-spin-button,
+.phone::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .phone:focus {

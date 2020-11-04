@@ -183,7 +183,7 @@ export default function ElevateAppBar(props) {
         Your favourite items are just a click away
       </div>
       <div>
-        <button className={Styles.btn}>Start Shopping</button>
+        <button className={Styles.btnShop}>Start Shopping</button>
       </div>
     </div>
   );
@@ -280,10 +280,14 @@ export default function ElevateAppBar(props) {
                       <div class={Styles.inputWithIcon}>
                         <input
                           type="text"
-                          placeholder="Phone Number"
+                          maxLength="10"
+                          // value={phoneNumber}
                           className={Styles.phone}
                         />
-                        <i class="far fa-mobile"></i>
+
+                        <i class="far fa-mobile">
+                          <span style={{ color: "black" }}>+91-</span>
+                        </i>
                       </div>
                       <button className={Styles.next}>Next</button>
                     </div>
