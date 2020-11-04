@@ -1,4 +1,6 @@
 import React from "react";
+import clsx from "clsx";
+import Drawer from "@material-ui/core/Drawer";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,7 +9,28 @@ import Styles from "../Components/navbar.module.css";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
+import { withStyles } from "@material-ui/core/styles";
+import Menu from "@material-ui/core/Menu";
 
+const StyledMenu = withStyles({
+  paper: {
+    border: "1px solid #d3d4d5",
+  },
+})((props) => (
+  <Menu
+    elevation={0}
+    getContentAnchorEl={null}
+    anchorOrigin={{
+      vertical: "bottom",
+      horizontal: "center",
+    }}
+    transformOrigin={{
+      vertical: "top",
+      horizontal: "center",
+    }}
+    {...props}
+  />
+));
 function ElevationScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -56,7 +79,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -64,11 +86,66 @@ const useStyles = makeStyles((theme) => ({
       width: "75ch",
     },
   },
+  list: {
+    width: 450,
+  },
+  fullList: {
+    width: "auto",
+  },
 }));
 
 export default function ElevateAppBar(props) {
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    left: false,
+  });
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === "left",
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <div className={Styles.cartHeader}>
+        <div style={{ float: "left" }}>My Cart</div>
+        <div className={Styles.closeBtn}>×</div>
+      </div>
+      <img
+        src="https://grofers.com/images/cart/empty-cart_2x-da3645a.png"
+        alt="img"
+        className={Styles.cartLogo}
+      />
+      <div className={Styles.itemsMsg}> No items in your cart</div>
+      <div className={Styles.helperMsg}>
+        Your favourite items are just a click away
+      </div>
+      <div>
+        <button className={Styles.btn}>Start Shopping</button>
+      </div>
+    </div>
+  );
   return (
     <React.Fragment>
       <ElevationScroll {...props}>
@@ -103,7 +180,12 @@ export default function ElevateAppBar(props) {
                 inputProps={{ "aria-label": "search" }}
               />
             </div>
-            <div class={Styles.login}>
+            <div
+              class={Styles.login}
+              aria-controls="customized-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
               <div>My Account</div>
               <div
                 style={{
@@ -115,10 +197,35 @@ export default function ElevateAppBar(props) {
                 Login/Sign Up &nbsp; <i class="fal fa-chevron-down"></i>
               </div>
             </div>
+            <StyledMenu
+              id="customized-menu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            ></StyledMenu>
 
             <div className={Styles.userAddress}>
               <i class="far fa-shopping-cart"></i>
-              <div class={Styles.locationMargin}>Cart</div>
+              <div>
+                {["right"].map((anchor) => (
+                  <React.Fragment key={anchor}>
+                    <div
+                      onClick={toggleDrawer(anchor, true)}
+                      class={Styles.locationMargin}
+                    >
+                      Cart
+                    </div>
+                    <Drawer
+                      anchor={anchor}
+                      open={state[anchor]}
+                      onClose={toggleDrawer(anchor, false)}
+                    >
+                      {list(anchor)}
+                    </Drawer>
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </Toolbar>
         </AppBar>
