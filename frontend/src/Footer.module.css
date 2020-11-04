@@ -1,0 +1,26 @@
+.div {
+  display: flex;
+  margin: 30px 0;
+  font-size: small;
+}
+
+.box {
+  margin: 25px;
+  text-align: justify;
+  color: grey;
+}
+
+.image {
+  margin-right: 10px;
+}
+
+.image > img {
+  height: 60px;
+  width: 60px;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  margin-right: 20px;
+}
