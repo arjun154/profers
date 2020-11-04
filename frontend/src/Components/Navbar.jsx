@@ -11,6 +11,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
 const StyledMenu = withStyles({
   paper: {
@@ -31,6 +37,18 @@ const StyledMenu = withStyles({
     {...props}
   />
 ));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    "&:focus": {
+      backgroundColor: theme.palette.main,
+      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+        color: theme.palette.common.black,
+      },
+    },
+  },
+}))(MenuItem);
+
 function ElevationScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
@@ -92,6 +110,20 @@ const useStyles = makeStyles((theme) => ({
   fullList: {
     width: "auto",
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "16%",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    outline: "none",
+    borderRadius: "5px",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(5, 15, 5),
+    textAlign: "center",
+  },
 }));
 
 export default function ElevateAppBar(props) {
@@ -107,6 +139,15 @@ export default function ElevateAppBar(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const [open, setOpen] = React.useState(false);
+
+  const handleModalOpen = () => {
+    setOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
   };
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -155,7 +196,7 @@ export default function ElevateAppBar(props) {
               <img
                 src="https://grofers.com/images/header/logo_2x-72edeee.png"
                 alt="logo"
-                className={Styles.logo}
+                className={Styles.logoProfers}
               />
             </div>
             <div className={Styles.userAddress}>
@@ -197,13 +238,78 @@ export default function ElevateAppBar(props) {
                 Login/Sign Up &nbsp; <i class="fal fa-chevron-down"></i>
               </div>
             </div>
+
             <StyledMenu
               id="customized-menu"
               anchorEl={anchorEl}
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-            ></StyledMenu>
+            >
+              <StyledMenuItem>
+                <button className={Styles.signUp} onClick={handleModalOpen}>
+                  Login or Sign Up
+                </button>
+                <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={open}
+                  onClose={handleModalClose}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={open}>
+                    <div className={classes.paper}>
+                      <div
+                        style={{
+                          fontSize: "20px",
+                          fontWeight: "lighter",
+                          marginBottom: "80px",
+                        }}
+                      >
+                        Phone Number Verification
+                      </div>
+                      <h4 style={{ fontWeight: "500", lineHeight: 1.5 }}>
+                        Enter your phone number to <br />
+                        Login/Sign up
+                      </h4>
+                      <div class={Styles.inputWithIcon}>
+                        <input
+                          type="text"
+                          placeholder="Phone Number"
+                          className={Styles.phone}
+                        />
+                        <i class="far fa-mobile"></i>
+                      </div>
+                      <button className={Styles.next}>Next</button>
+                    </div>
+                  </Fade>
+                </Modal>
+              </StyledMenuItem>
+              <StyledMenuItem>
+                <ListItemIcon>
+                  <i class="far fa-question-circle"></i>
+                </ListItemIcon>
+                <ListItemText primary="FAQs" style={{ color: "gray" }} />
+              </StyledMenuItem>
+              <StyledMenuItem>
+                <ListItemIcon>
+                  <i class="fas fa-percent"></i>
+                </ListItemIcon>
+                <ListItemText primary="Offers" style={{ color: "gray" }} />
+              </StyledMenuItem>
+              <StyledMenuItem>
+                <img
+                  src="https://grofers.com/images/header/grofers-recipe-3ed3e37.png"
+                  alt="recipe"
+                  height="30px"
+                />
+              </StyledMenuItem>
+            </StyledMenu>
 
             <div className={Styles.userAddress}>
               <i class="far fa-shopping-cart"></i>
