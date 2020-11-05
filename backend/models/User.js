@@ -35,6 +35,10 @@ const userSchema = new Schema({
         max: 255,
         required: true,
       },
+      createdAt: {
+        type: Date,
+        default: new Date,
+      },
       location: {
         type: {
           type: String,
