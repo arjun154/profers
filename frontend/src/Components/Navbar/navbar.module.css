@@ -1,38 +1,3 @@
-.logoDiv {
-  align-items: center;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-.logoProfers {
-  height: 36px;
-  width: 36px;
-  padding: 12px 28px;
-  display: block;
-  margin-left: -30px;
-  border-right: 1px solid hsla(0, 0%, 100%, 0.08);
-}
-
-.logo:hover {
-  background-color: #2d3133 !important;
-}
-
-.userAddress:hover {
-  background-color: #2d3133 !important;
-}
-
-.userAddress {
-  font-family: Celias, Helvetica;
-  font-weight: lighter;
-  display: flex;
-  font-size: 15px;
-  padding: 22px 40px;
-}
-
-.locationMargin {
-  margin: 0px 7px;
-  cursor: pointer;
-}
 
 .login {
   font-family: Celias, Helvetica;
