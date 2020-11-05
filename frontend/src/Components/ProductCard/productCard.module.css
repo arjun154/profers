@@ -1,0 +1,38 @@
+.box ::-webkit-scrollbar {
+  display: none !important;
+}
+
+.box {
+  overflow-x: auto;
+}
+
+.text {
+  text-align: justify;
+  margin-left: 10;
+  color: grey;
+  font-size: 15px;
+}
+
+.price {
+  display: flex;
+}
+
+.price > div {
+  margin: 2px;
+}
+
+.discount {
+  text-decoration: line-through;
+}
+
+.root:hover > div > img {
+  position: relative;
+  top: -5px;
+}
+
+.root {
+  cursor: pointer;
+  min-width: 250px;
+  margin: 20px;
+  padding: 10px;
+}
