@@ -1,0 +1,20 @@
+.add_button {
+  height: auto;
+  width: 80%;
+  text-align: center;
+  color: white;
+  background: rgb(255, 72, 0);
+}
+
+.root {
+  display: flex;
+}
+
+.plus_button {
+  height: auto;
+  text-align: center;
+  font-size: large;
+  color: white;
+  background: rgb(255, 81, 0);
+  width: 20%;
+}
