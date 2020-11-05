@@ -1,6 +1,7 @@
 .button_all {
   color: rgb(255, 145, 0) !important;
   text-transform: none !important;
+  font-family: "Roboto", sans-serif, helvetica;
 }
 
 .button_all:focus {
@@ -21,4 +22,5 @@
 
 .card_head {
   font-size: x-large;
+  font-family: "Roboto", sans-serif, helvetica;
 }
