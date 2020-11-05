@@ -67,6 +67,11 @@ ElevationScroll.propTypes = {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "sticky",
+    backgroundColor: "#464b4c",
+    top: 0,
+  },
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -133,126 +138,122 @@ export default function ElevateAppBar(props) {
   };
 
   return (
-    <React.Fragment>
-      <ElevationScroll {...props}>
-        <AppBar className={Styles.appBar}>
-          <Toolbar>
-            <div className={Styles.logoDiv}>
-              <img
-                src="https://grofers.com/images/header/logo_2x-72edeee.png"
-                alt="logo"
-                className={Styles.logoProfers}
-              />
-            </div>
-            <div className={Styles.userAddress}>
-              <div>
-                <i className="fal fa-map-marker-alt"></i>
-              </div>
-              <div className={Styles.locationMargin}>New Delhi</div>
-              <div>
-                <i className="fal fa-chevron-down"></i>
-              </div>
-            </div>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
-            <div
-              className={Styles.login}
-              aria-controls="customized-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
+    <AppBar className={classes.root}>
+      <Toolbar>
+        <div className={Styles.logoDiv}>
+          <img
+            src="https://grofers.com/images/header/logo_2x-72edeee.png"
+            alt="logo"
+            className={Styles.logoProfers}
+          />
+        </div>
+        <div className={Styles.userAddress}>
+          <div>
+            <i className="fal fa-map-marker-alt"></i>
+          </div>
+          <div className={Styles.locationMargin}>New Delhi</div>
+          <div>
+            <i className="fal fa-chevron-down"></i>
+          </div>
+        </div>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ "aria-label": "search" }}
+          />
+        </div>
+        <div
+          className={Styles.login}
+          aria-controls="customized-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <div>My Account</div>
+          <div
+            style={{
+              fontSize: "12px",
+              marginLeft: "20px",
+              letterSpacing: 0.5,
+            }}
+          >
+            Login/Sign Up &nbsp; <i className="fal fa-chevron-down"></i>
+          </div>
+        </div>
+
+        <StyledMenu
+          id="customized-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <StyledMenuItem>
+            <button
+              className={Styles.signUp}
+              onClick={() => setOpenLoginModal(true)}
             >
-              <div>My Account</div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  marginLeft: "20px",
-                  letterSpacing: 0.5,
-                }}
-              >
-                Login/Sign Up &nbsp; <i className="fal fa-chevron-down"></i>
-              </div>
-            </div>
+              Login or Sign Up
+            </button>
 
-            <StyledMenu
-              id="customized-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
+            <CustomModal
+              open={openLoginModal}
+              handleClose={() => setOpenLoginModal(false)}
             >
-              <StyledMenuItem>
-                <button
-                  className={Styles.signUp}
-                  onClick={() => setOpenLoginModal(true)}
+              <Login />
+            </CustomModal>
+          </StyledMenuItem>
+
+          <StyledMenuItem>
+            <ListItemIcon>
+              <i className="far fa-question-circle"></i>
+            </ListItemIcon>
+            <ListItemText primary="FAQs" style={{ color: "gray" }} />
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <ListItemIcon>
+              <i className="fas fa-percent"></i>
+            </ListItemIcon>
+            <ListItemText primary="Offers" style={{ color: "gray" }} />
+          </StyledMenuItem>
+          <StyledMenuItem>
+            <img
+              src="https://grofers.com/images/header/grofers-recipe-3ed3e37.png"
+              alt="recipe"
+              height="30px"
+            />
+          </StyledMenuItem>
+        </StyledMenu>
+
+        <div className={Styles.userAddress}>
+          <i className="far fa-shopping-cart"></i>
+          <div>
+            {["right"].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <div
+                  onClick={toggleDrawer(anchor, true)}
+                  className={Styles.locationMargin}
                 >
-                  Login or Sign Up
-                </button>
-
-                <CustomModal
-                  open={openLoginModal}
-                  handleClose={() => setOpenLoginModal(false)}
+                  Cart
+                </div>
+                <Drawer
+                  anchor={anchor}
+                  open={state[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
                 >
-                  <Login />
-                </CustomModal>
-              </StyledMenuItem>
-
-              <StyledMenuItem>
-                <ListItemIcon>
-                  <i className="far fa-question-circle"></i>
-                </ListItemIcon>
-                <ListItemText primary="FAQs" style={{ color: "gray" }} />
-              </StyledMenuItem>
-              <StyledMenuItem>
-                <ListItemIcon>
-                  <i className="fas fa-percent"></i>
-                </ListItemIcon>
-                <ListItemText primary="Offers" style={{ color: "gray" }} />
-              </StyledMenuItem>
-              <StyledMenuItem>
-                <img
-                  src="https://grofers.com/images/header/grofers-recipe-3ed3e37.png"
-                  alt="recipe"
-                  height="30px"
-                />
-              </StyledMenuItem>
-            </StyledMenu>
-
-            <div className={Styles.userAddress}>
-              <i className="far fa-shopping-cart"></i>
-              <div>
-                {["right"].map((anchor) => (
-                  <React.Fragment key={anchor}>
-                    <div
-                      onClick={toggleDrawer(anchor, true)}
-                      className={Styles.locationMargin}
-                    >
-                      Cart
-                    </div>
-                    <Drawer
-                      anchor={anchor}
-                      open={state[anchor]}
-                      onClose={toggleDrawer(anchor, false)}
-                    >
-                      <Cart toggleDrawer={toggleDrawer(anchor, false)} />
-                    </Drawer>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-    </React.Fragment>
+                  <Cart toggleDrawer={toggleDrawer(anchor, false)} />
+                </Drawer>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 }

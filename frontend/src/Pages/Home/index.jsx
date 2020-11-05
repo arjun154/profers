@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from "../Category/index";
+import Category from "../../Components/Category/index";
 import styles from "./home.module.css";
 
 function Home() {
