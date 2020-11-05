@@ -1,0 +1,48 @@
+.cartLogo {
+  height: 168px;
+  width: 162px;
+  margin-top: 35%;
+  margin-bottom: 10%;
+  margin-left: 30%;
+}
+
+.cartHeader {
+  border-bottom: none;
+  color: #fff;
+  padding: 20px 46px 20px 24px;
+  background-color: #1c2224;
+  height: 20px;
+}
+
+.closeBtn {
+  float: right;
+  cursor: pointer;
+  font-size: 24px;
+  margin-top: -5px;
+}
+
+.helperMsg {
+  color: #666;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.btnShop {
+  background-color: #e96336;
+  border: none;
+  font-size: 14px;
+  padding: 22px 178.5px;
+  color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 30%;
+}
+
+.itemsMsg {
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
