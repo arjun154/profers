@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -14,9 +13,9 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
+import CustomModal from "../CustomModal";
+import Login from "../Login";
+import Cart from "../Cart";
 
 const StyledMenu = withStyles({
   paper: {
@@ -104,26 +103,6 @@ const useStyles = makeStyles((theme) => ({
       width: "75ch",
     },
   },
-  list: {
-    width: 450,
-  },
-  fullList: {
-    width: "auto",
-  },
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: "16%",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    outline: "none",
-    borderRadius: "5px",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(5, 15, 5),
-    textAlign: "center",
-  },
 }));
 
 export default function ElevateAppBar(props) {
@@ -140,15 +119,7 @@ export default function ElevateAppBar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const [open, setOpen] = React.useState(false);
-
-  const handleModalOpen = () => {
-    setOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setOpen(false);
-  };
+  const [openLoginModal, setOpenLoginModal] = React.useState(false);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -160,33 +131,7 @@ export default function ElevateAppBar(props) {
 
     setState({ ...state, [anchor]: open });
   };
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "left",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <div className={Styles.cartHeader}>
-        <div style={{ float: "left" }}>My Cart</div>
-        <div className={Styles.closeBtn}>×</div>
-      </div>
-      <img
-        src="https://grofers.com/images/cart/empty-cart_2x-da3645a.png"
-        alt="img"
-        className={Styles.cartLogo}
-      />
-      <div className={Styles.itemsMsg}> No items in your cart</div>
-      <div className={Styles.helperMsg}>
-        Your favourite items are just a click away
-      </div>
-      <div>
-        <button className={Styles.btnShop}>Start Shopping</button>
-      </div>
-    </div>
-  );
+
   return (
     <React.Fragment>
       <ElevationScroll {...props}>
@@ -201,11 +146,11 @@ export default function ElevateAppBar(props) {
             </div>
             <div className={Styles.userAddress}>
               <div>
-                <i class="fal fa-map-marker-alt"></i>
+                <i className="fal fa-map-marker-alt"></i>
               </div>
-              <div class={Styles.locationMargin}>New Delhi</div>
+              <div className={Styles.locationMargin}>New Delhi</div>
               <div>
-                <i class="fal fa-chevron-down"></i>
+                <i className="fal fa-chevron-down"></i>
               </div>
             </div>
             <div className={classes.search}>
@@ -222,7 +167,7 @@ export default function ElevateAppBar(props) {
               />
             </div>
             <div
-              class={Styles.login}
+              className={Styles.login}
               aria-controls="customized-menu"
               aria-haspopup="true"
               onClick={handleClick}
@@ -235,7 +180,7 @@ export default function ElevateAppBar(props) {
                   letterSpacing: 0.5,
                 }}
               >
-                Login/Sign Up &nbsp; <i class="fal fa-chevron-down"></i>
+                Login/Sign Up &nbsp; <i className="fal fa-chevron-down"></i>
               </div>
             </div>
 
@@ -247,62 +192,30 @@ export default function ElevateAppBar(props) {
               onClose={handleClose}
             >
               <StyledMenuItem>
-                <button className={Styles.signUp} onClick={handleModalOpen}>
+                <button
+                  className={Styles.signUp}
+                  onClick={() => setOpenLoginModal(true)}
+                >
                   Login or Sign Up
                 </button>
-                <Modal
-                  aria-labelledby="transition-modal-title"
-                  aria-describedby="transition-modal-description"
-                  className={classes.modal}
-                  open={open}
-                  onClose={handleModalClose}
-                  closeAfterTransition
-                  BackdropComponent={Backdrop}
-                  BackdropProps={{
-                    timeout: 500,
-                  }}
-                >
-                  <Fade in={open}>
-                    <div className={classes.paper}>
-                      <div
-                        style={{
-                          fontSize: "20px",
-                          fontWeight: "lighter",
-                          marginBottom: "80px",
-                        }}
-                      >
-                        Phone Number Verification
-                      </div>
-                      <h4 style={{ fontWeight: "500", lineHeight: 1.5 }}>
-                        Enter your phone number to <br />
-                        Login/Sign up
-                      </h4>
-                      <div class={Styles.inputWithIcon}>
-                        <input
-                          type="text"
-                          maxLength="10"
-                          // value={phoneNumber}
-                          className={Styles.phone}
-                        />
 
-                        <i class="far fa-mobile">
-                          <span style={{ color: "black" }}>+91-</span>
-                        </i>
-                      </div>
-                      <button className={Styles.next}>Next</button>
-                    </div>
-                  </Fade>
-                </Modal>
+                <CustomModal
+                  open={openLoginModal}
+                  handleClose={() => setOpenLoginModal(false)}
+                >
+                  <Login />
+                </CustomModal>
               </StyledMenuItem>
+
               <StyledMenuItem>
                 <ListItemIcon>
-                  <i class="far fa-question-circle"></i>
+                  <i className="far fa-question-circle"></i>
                 </ListItemIcon>
                 <ListItemText primary="FAQs" style={{ color: "gray" }} />
               </StyledMenuItem>
               <StyledMenuItem>
                 <ListItemIcon>
-                  <i class="fas fa-percent"></i>
+                  <i className="fas fa-percent"></i>
                 </ListItemIcon>
                 <ListItemText primary="Offers" style={{ color: "gray" }} />
               </StyledMenuItem>
@@ -316,13 +229,13 @@ export default function ElevateAppBar(props) {
             </StyledMenu>
 
             <div className={Styles.userAddress}>
-              <i class="far fa-shopping-cart"></i>
+              <i className="far fa-shopping-cart"></i>
               <div>
                 {["right"].map((anchor) => (
                   <React.Fragment key={anchor}>
                     <div
                       onClick={toggleDrawer(anchor, true)}
-                      class={Styles.locationMargin}
+                      className={Styles.locationMargin}
                     >
                       Cart
                     </div>
@@ -331,7 +244,7 @@ export default function ElevateAppBar(props) {
                       open={state[anchor]}
                       onClose={toggleDrawer(anchor, false)}
                     >
-                      {list(anchor)}
+                      <Cart toggleDrawer={toggleDrawer(anchor, false)} />
                     </Drawer>
                   </React.Fragment>
                 ))}
