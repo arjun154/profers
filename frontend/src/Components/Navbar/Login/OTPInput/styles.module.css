@@ -5,10 +5,10 @@
 }
 
 .input {
-  width: 32px;
+  width: 64px;
   padding: 0.5rem;
   font-size: 32px;
-  margin: 0.2rem;
+  margin: 1rem 0.5rem;
   text-align: center;
   text-transform: uppercase;
   background-color: white;

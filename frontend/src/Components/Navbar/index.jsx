@@ -1,76 +1,22 @@
 import React from "react";
-import Drawer from "@material-ui/core/Drawer";
-import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Styles from "./navbar.module.css";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-import { withStyles } from "@material-ui/core/styles";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import CustomModal from "../CustomModal";
-import Login from "../Login";
 import Cart from "../Cart";
-
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5",
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.black,
-      },
-    },
-  },
-}))(MenuItem);
-
-function ElevationScroll(props) {
-  const { children, window } = props;
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
-  });
-
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
-
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-};
+import LocationPicker from "./LocationPicker";
+import Logo from "./Logo";
+import UserMenu from "./UserMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "sticky",
     backgroundColor: "#464b4c",
     top: 0,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "0 1rem !important",
+    justifyContent: "space-between",
   },
   search: {
     position: "relative",
@@ -112,50 +58,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ElevateAppBar(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    left: false,
-  });
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const [openLoginModal, setOpenLoginModal] = React.useState(false);
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   return (
-    <AppBar className={classes.root}>
-      <Toolbar>
-        <div className={Styles.logoDiv}>
-          <img
-            src="https://grofers.com/images/header/logo_2x-72edeee.png"
-            alt="logo"
-            className={Styles.logoProfers}
-          />
-        </div>
-        <div className={Styles.userAddress}>
-          <div>
-            <i className="fal fa-map-marker-alt"></i>
-          </div>
-          <div className={Styles.locationMargin}>New Delhi</div>
-          <div>
-            <i className="fal fa-chevron-down"></i>
-          </div>
-        </div>
+    <>
+      <AppBar className={classes.root}>
+        <Logo />
+
+        <LocationPicker />
+
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
@@ -169,91 +80,10 @@ export default function ElevateAppBar(props) {
             inputProps={{ "aria-label": "search" }}
           />
         </div>
-        <div
-          className={Styles.login}
-          aria-controls="customized-menu"
-          aria-haspopup="true"
-          onClick={handleClick}
-        >
-          <div>My Account</div>
-          <div
-            style={{
-              fontSize: "12px",
-              marginLeft: "20px",
-              letterSpacing: 0.5,
-            }}
-          >
-            Login/Sign Up &nbsp; <i className="fal fa-chevron-down"></i>
-          </div>
-        </div>
 
-        <StyledMenu
-          id="customized-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <StyledMenuItem>
-            <button
-              className={Styles.signUp}
-              onClick={() => setOpenLoginModal(true)}
-            >
-              Login or Sign Up
-            </button>
-
-            <CustomModal
-              open={openLoginModal}
-              handleClose={() => setOpenLoginModal(false)}
-            >
-              <Login />
-            </CustomModal>
-          </StyledMenuItem>
-
-          <StyledMenuItem>
-            <ListItemIcon>
-              <i className="far fa-question-circle"></i>
-            </ListItemIcon>
-            <ListItemText primary="FAQs" style={{ color: "gray" }} />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <ListItemIcon>
-              <i className="fas fa-percent"></i>
-            </ListItemIcon>
-            <ListItemText primary="Offers" style={{ color: "gray" }} />
-          </StyledMenuItem>
-          <StyledMenuItem>
-            <img
-              src="https://grofers.com/images/header/grofers-recipe-3ed3e37.png"
-              alt="recipe"
-              height="30px"
-            />
-          </StyledMenuItem>
-        </StyledMenu>
-
-        <div className={Styles.userAddress}>
-          <i className="far fa-shopping-cart"></i>
-          <div>
-            {["right"].map((anchor) => (
-              <React.Fragment key={anchor}>
-                <div
-                  onClick={toggleDrawer(anchor, true)}
-                  className={Styles.locationMargin}
-                >
-                  Cart
-                </div>
-                <Drawer
-                  anchor={anchor}
-                  open={state[anchor]}
-                  onClose={toggleDrawer(anchor, false)}
-                >
-                  <Cart toggleDrawer={toggleDrawer(anchor, false)} />
-                </Drawer>
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </Toolbar>
-    </AppBar>
+        <UserMenu />
+        <Cart />
+      </AppBar>
+    </>
   );
 }
