@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
-import StyledMenu from "../Common/StyledMenu";
+import StyledMenu from "../../Common/StyledMenu";
 import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({

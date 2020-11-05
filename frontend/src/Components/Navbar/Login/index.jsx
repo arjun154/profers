@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.css";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { requestOtp, validateOtp } from "../../Redux/auth/actions";
-import OTPInput from "../OTPInput";
+import { requestOtp, validateOtp } from "../../../Redux/auth/actions";
+import OTPInput from "./OTPInput";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = () => {
+const Login = ({ handleClose }) => {
   const classes = useStyles();
   const [phoneNumber, setPhoneNumber] = useState("8279880948");
   const [otp, setOtp] = useState("");

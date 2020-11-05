@@ -1,46 +1,51 @@
-import React from "react";
-import clsx from "clsx";
-import Styles from "./style.module.css";
-import { makeStyles } from "@material-ui/core";
+import { Drawer, makeStyles } from "@material-ui/core";
+import React, { useState } from "react";
+import Cart from "./Cart";
+import CartIcon from "./Icon";
 
 const useStyles = makeStyles((theme) => ({
-  list: {
-    width: 450,
-  },
-  fullList: {
-    width: "auto",
+  root: {
+    cursor: "pointer",
+    alignSelf: "stretch",
+    padding: "1rem",
+    display: "flex",
+    alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#2d3133",
+    },
   },
 }));
 
-const Cart = ({ toggleDrawer }) => {
+const CartComponent = () => {
+  const [state, setState] = useState({ left: false });
   const classes = useStyles();
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
   return (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: 'left' === "left",
-      })}
-      role="presentation"
-      onClick={toggleDrawer}
-      onKeyDown={toggleDrawer}
-    >
-      <div className={Styles.cartHeader}>
-        <div style={{ float: "left" }}>My Cart</div>
-        <div className={Styles.closeBtn}>×</div>
-      </div>
-      <img
-        src="https://grofers.com/images/cart/empty-cart_2x-da3645a.png"
-        alt="img"
-        className={Styles.cartLogo}
+    <>
+      <CartIcon
+        className={classes.root}
+        onClick={toggleDrawer("right", true)}
       />
-      <div className={Styles.itemsMsg}> No items in your cart</div>
-      <div className={Styles.helperMsg}>
-        Your favourite items are just a click away
-      </div>
-      <div>
-        <button className={Styles.btnShop}>Start Shopping</button>
-      </div>
-    </div>
+      <Drawer
+        anchor={"right"}
+        open={state["right"]}
+        onClose={toggleDrawer("right", false)}
+      >
+        <Cart toggleDrawer={toggleDrawer("right", false)} />
+      </Drawer>
+    </>
   );
 };
 
-export default Cart;
+export default CartComponent;
