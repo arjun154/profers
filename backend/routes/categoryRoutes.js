@@ -1,4 +1,11 @@
-const route = require("express").Router();
-const paginate = require("../utils/paginate");
+const routes = require("express").Router();
+const {
+  getCategories,
+  addCategory,
+} = require("../controllers/category-controller");
+const queryParser = require("../middleware/queryParser");
 
-route.get("/", (req, res) => {}, paginate(req, res));
+routes.get("/", queryParser, getCategories);
+routes.post("/", addCategory);
+
+module.exports = routes;
