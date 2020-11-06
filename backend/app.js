@@ -24,6 +24,7 @@ mongoose.connect(
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/api/V1/media", express.static("media"));
 app.use("/api/V1/accounts", userRoutes);
 app.use("/api/V1/categories", categoryRoutes);
 app.use("/api/V1/cities", cityRoutes);
