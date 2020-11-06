@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
 const Schema = mongoose.Schema;
 
@@ -8,6 +9,7 @@ const categorySchema = new Schema({
     min: 2,
     max: 255,
     required: true,
+    unique: true,
   },
   subCategories: [
     {
@@ -20,5 +22,7 @@ const categorySchema = new Schema({
     },
   ],
 });
+
+categorySchema.plugin(aggregatePaginate);
 
 module.exports = mongoose.model("Category", categorySchema);
