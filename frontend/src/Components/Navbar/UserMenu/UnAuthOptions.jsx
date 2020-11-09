@@ -1,6 +1,7 @@
 import React from "react";
 import { ListItemIcon, ListItemText, makeStyles } from "@material-ui/core";
 import StyledMenuItem from "../../Common/StyledMenuItem";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   signUp: {
@@ -31,7 +32,9 @@ const UnAuthOptions = ({ openLoginModal }) => {
         <ListItemIcon>
           <i className="far fa-question-circle"></i>
         </ListItemIcon>
-        <ListItemText primary="FAQs" style={{ color: "gray" }} />
+        <Link to="/account/orders" style={{ textDecoration: "none" }}>
+          <ListItemText primary="FAQs" style={{ color: "gray" }} />
+        </Link>
       </StyledMenuItem>
       <StyledMenuItem>
         <ListItemIcon>
