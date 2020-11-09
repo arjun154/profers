@@ -12,9 +12,8 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const { phone } = jwt.decode(token, process.env.JWT_PRIVATE_KEY);
-
     if (!phone) return res.status(500).json({ message: "Token is not valid!" });
-    const user = User.find({ phone });
+    const user = await User.findOne({ phone });
 
     if (!user) return res.status(500).json({ message: "No user found!" });
 

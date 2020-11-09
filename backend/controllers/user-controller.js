@@ -60,7 +60,7 @@ const validateOtp = async (req, res) => {
       return res.status(400).json({ message: "Otp is incorrect!" });
     }
 
-    let user = await User.find({ phone: phone });
+    let user = await User.findOne({ phone: phone });
     if (!user) {
       user = await new User({ phone }).save();
     }
