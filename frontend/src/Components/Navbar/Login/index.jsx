@@ -60,7 +60,7 @@ const Login = ({ handleClose }) => {
                 <>
                   Enter 4 digit code sent to your phone
                   <br />
-                  +91-{phoneNumber}
+                  +91- {phoneNumber}
                 </>
               ) : (
                 <>
@@ -94,7 +94,9 @@ const Login = ({ handleClose }) => {
                   />
 
                   <i class="far fa-mobile">
-                    <span style={{ color: "black" }}>+91-</span>
+                    <span style={{ color: "black", paddingLeft: "0.2rem" }}>
+                      +91 -
+                    </span>
                   </i>
                 </div>
                 <button
