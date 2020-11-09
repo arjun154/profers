@@ -36,9 +36,7 @@ const getItems = async (req, res) => {
             { $unwind: "$subCategories" },
             {
               $match: {
-                "subCategories._id": mongoose.Types.ObjectId(
-                  "5fa50a5e2e152582a136aad6"
-                ),
+                $expr: { $eq: ["$subCategories._id", "$$subCategoryId"] },
               },
             },
             {
