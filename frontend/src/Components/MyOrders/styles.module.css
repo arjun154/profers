@@ -1,0 +1,67 @@
+.root {
+  display: flex;
+  margin: 0% 10%;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 0 hsla(0, 0%, 78%, 0.5);
+}
+.leftTabs {
+  flex: 1;
+  padding-top: 2%;
+  padding-left: 2%;
+  color: #666;
+  border-right: 1px solid #eee;
+}
+.tabs {
+  line-height: 4;
+  margin-top: 7%;
+  padding-left: 15%;
+  margin-left: -13%;
+  text-align: left;
+  color: #666;
+  border-top: 1px solid #eee;
+  font-size: 15px;
+}
+.dataDisplay {
+  flex: 5;
+  padding-top: 6%;
+  padding-bottom: 14%;
+}
+.shoppingBtn {
+  background-color: #e96125;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 35px;
+  padding: 13px 46px;
+  width: 200px;
+  outline: none;
+  border: none;
+}
+.subHeading {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.heading {
+  color: #333;
+  font-size: 16px;
+  margin-top: 45px;
+}
+.link {
+  text-decoration: none;
+  color: #666;
+}
+.tabPanel {
+  padding-left: 15%;
+  margin-left: -14%;
+  border-bottom: 1px solid #eee;
+}
+.tabPanel:hover {
+  background-color: rgb(241, 237, 237);
+}
+.accountLogo {
+  padding-right: 10%;
+  padding-bottom: 5%;
+}
