@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const OrdersPage = () => {
-  const [phoneNumber, setPhoneNumber] = useState("8279880948");
+  const [phoneNumber] = useState("8279880948");
 
   return (
     <>
