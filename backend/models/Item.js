@@ -1,4 +1,3 @@
-const { func } = require("joi");
 const mongoose = require("mongoose");
 const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
@@ -32,7 +31,6 @@ const varietySchema = new Schema({
     type: String,
     min: 1,
     max: 255,
-    unique: true,
     default: "5mg",
   },
   price: {
@@ -77,12 +75,10 @@ const itemSchema = new Schema(
     },
     category: {
       type: Schema.Types.ObjectId,
-      // ref: "Category",
       required: true,
     },
     subCategory: {
       type: Schema.Types.ObjectId,
-      // ref: "Category.subCategory",
       required: true,
     },
     varieties: [varietySchema],

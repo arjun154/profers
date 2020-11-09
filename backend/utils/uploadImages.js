@@ -26,15 +26,12 @@ const storage = multerS3({
 });
 
 const fileFilter = (req, file, cb) => {
-  try {
-    const supportedTypes = ["image/jpg", "image/png", "image/JPG", "image/PNG"];
-    if (supportedTypes.includes(file.mimetype)) {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  } catch (error) {
-    cb(error);
+  const supportedTypes = ["image/jpeg", "image/png", "image/JPEG", "image/PNG"];
+  if (supportedTypes.includes(file.mimetype)) {
+    console.log(file.mimetype);
+    cb(null, true);
+  } else {
+    cb(new Error("Image format is not supported!"));
   }
 };
 
