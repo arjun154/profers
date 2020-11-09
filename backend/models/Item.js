@@ -12,6 +12,13 @@ const imageSchema = new Schema({
     max: 2000,
     unique: true,
   },
+  location: {
+    type: String,
+    min: 1,
+    max: 2000,
+    required: true,
+    unique: true,
+  },
 });
 
 const varietySchema = new Schema({
