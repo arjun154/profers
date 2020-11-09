@@ -1,4 +1,3 @@
-const { func } = require("joi");
 const mongoose = require("mongoose");
 const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
 
@@ -10,6 +9,13 @@ const imageSchema = new Schema({
     required: true,
     min: 1,
     max: 2000,
+    unique: true,
+  },
+  location: {
+    type: String,
+    min: 1,
+    max: 2000,
+    required: true,
     unique: true,
   },
 });
@@ -25,7 +31,6 @@ const varietySchema = new Schema({
     type: String,
     min: 1,
     max: 255,
-    unique: true,
     default: "5mg",
   },
   price: {
@@ -39,6 +44,12 @@ const varietySchema = new Schema({
     min: 2,
     max: 255,
     default: "Profers LTD.",
+  },
+  sale: {
+    type: Number,
+    min: 0,
+    max: 100,
+    default: 0,
   },
   city: {
     type: Schema.Types.ObjectId,
@@ -64,15 +75,14 @@ const itemSchema = new Schema(
     },
     category: {
       type: Schema.Types.ObjectId,
-      // ref: "Category",
       required: true,
     },
     subCategory: {
       type: Schema.Types.ObjectId,
-      // ref: "Category.subCategory",
       required: true,
     },
     varieties: [varietySchema],
+    productDetails: [{}],
   },
   { timestamps: true }
 );

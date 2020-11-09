@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 
 const addItem = async (req, res) => {
   try {
-    const images = req.files.map((image) => ({ name: image.filename }));
+    const images = req.files.map((image) => ({
+      name: image.key,
+      location: image.location,
+    }));
 
     const data = {
       ...req.body,
@@ -33,9 +36,7 @@ const getItems = async (req, res) => {
             { $unwind: "$subCategories" },
             {
               $match: {
-                "subCategories._id": mongoose.Types.ObjectId(
-                  "5fa50a5e2e152582a136aad6"
-                ),
+                $expr: { $eq: ["$subCategories._id", "$$subCategoryId"] },
               },
             },
             {
@@ -64,6 +65,7 @@ const getItems = async (req, res) => {
           varieties: 1,
           images: 1,
           createdAt: 1,
+          productDetails: 1,
         },
       },
     ]);
