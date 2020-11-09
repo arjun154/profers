@@ -17,7 +17,7 @@ const initState = {
   errorMessage: "",
   message: "",
   loading: false,
-  otpSend: true,
+  otpSend: false,
   location: {
     name: "",
     _id: "",

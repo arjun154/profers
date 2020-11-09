@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadLogin());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">
