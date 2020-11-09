@@ -47,6 +47,12 @@ const varietySchema = new Schema({
     max: 255,
     default: "Profers LTD.",
   },
+  sale: {
+    type: Number,
+    min: 0,
+    max: 100,
+    default: 0,
+  },
   city: {
     type: Schema.Types.ObjectId,
     ref: "City",
