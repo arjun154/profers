@@ -7,6 +7,8 @@ import {
   VALIDATE_OTP_FAILURE,
   VALIDATE_OTP_REQUEST,
   VALIDATE_OTP_SUCCESS,
+  LOGIN_LOAD,
+  LOGOUT_SUCCESS,
 } from "./actionTypes";
 
 export const getOtpSuccess = (payload) => ({
@@ -56,9 +58,31 @@ export const validateOtp = (number, otp) => async (dispatch) => {
   try {
     const { data } = await api.post(`/accounts/${number}`, { otp });
     dispatch(validateOtpSuccess(data));
+    localStorage.setItem("auth", JSON.stringify(data));
   } catch (error) {
     dispatch(validateOtpFailure(error?.response?.data || error.message));
   }
+};
+
+// logout
+export const logoutSuccess = () => ({
+  type: LOGOUT_SUCCESS,
+});
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("auth");
+  dispatch(logoutSuccess());
+};
+
+// Load login
+export const loginLoadSuccess = (payload) => ({
+  type: LOGIN_LOAD,
+  payload,
+});
+
+export const loadLogin = () => (dispatch) => {
+  const data = JSON.parse(localStorage.getItem("auth"));
+  data && dispatch(loginLoadSuccess(data));
 };
 
 // set location

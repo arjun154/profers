@@ -12,6 +12,28 @@ const imageSchema = new Schema({
     max: 2000,
     unique: true,
   },
+  location: {
+    type: String,
+    min: 1,
+    max: 2000,
+    required: true,
+    unique: true,
+  },
+});
+
+const varietySchema = new Schema({
+  availableQty: {
+    type: Number,
+    min: 0,
+    max: 10000,
+    default: 10,
+  },
+  size: {
+    type: String,
+    min: 1,
+    max: 255,
+    default: "5mg",
+  },
 });
 
 const varietySchema = new Schema({
@@ -45,6 +67,30 @@ const varietySchema = new Schema({
     ref: "City",
     default: "5fa510453eb2a69849f5eceb",
   },
+});
+
+const itemSchema = new Schema(
+  {
+    name: {
+      type: String,
+      min: 2,
+      max: 255,
+      required: true,
+      unique: true,
+    },
+    images: [imageSchema],
+    description: {
+      type: String,
+      min: 2,
+      max: 2000,
+      required: true,
+    },
+    category: {
+      type: Schema.Types.ObjectId,
+      // ref: "Category",
+      required: true,
+    },
+    varieties: [varietySchema]
 });
 
 const itemSchema = new Schema(
