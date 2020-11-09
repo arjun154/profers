@@ -6,14 +6,19 @@ const useStyles = makeStyles((theme) => ({
   addressModal: {
     backgroundColor: "white",
     borderRadius: "4px",
-    padding: "5% 10%",
-    lineHeight: 3,
-    marginTop: "2%",
+    width: "40%",
+    padding: "2% 0%",
+    marginTop: "10%",
+    "& h4": {
+      letterSpacing: "0.2px",
+      fontFamily: "Celias,Helvetica",
+    },
   },
   addressHeading: {
     color: "#333",
+    padding: "1% 8%",
+    fontFamily: "Celias,Helvetica",
     fontSize: "18px",
-    fontWeight: "500",
     marginBottom: "8px",
     textAlign: "center",
   },
@@ -21,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#999",
     fontSize: " 12px",
     textAlign: "center",
+    fontFamily: "Celias,Helvetica",
   },
   input: {
     width: "100%",
@@ -34,9 +40,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px 10px",
   },
   select: {
-    width: "25%",
+    width: "27%",
     outline: 0,
-    marginRight: "5%",
+    marginRight: "3%",
     background: "#fff",
     border: "1px solid #ccc",
     borderRadius: "3px",
@@ -92,38 +98,63 @@ export default function NewAddress() {
   const classes = useStyles();
   return (
     <div className={classes.addressModal}>
-      <div className={classes.addressHeading}>Add New Delivery Address</div>
-      <small className={classes.addressSubHeading}>
-        Please enter the accurate address, it will help us to serve you better
-      </small>
-      <LocationPicker />
-      <div className={classes.label}>Name</div>
-      <div>
-        <select className={classes.select}>
-          <option value="Mr.">Mr</option>
-          <option value="Mrs.">Mrs</option>
-          <option value="Miss">Miss</option>
-        </select>
-        <input type="text" value="" className={classes.selectInput} />
+      <div className={classes.addressHeading}>
+        <h4>Add New Delivery Address</h4>
+        <small className={classes.addressSubHeading}>
+          Please enter the accurate address, it will help us to serve you better
+        </small>
       </div>
-      <div className={classes.label}>Flat / House / Office No.</div>
-      <input type="text" value="" className={classes.input} />
-      <div className={classes.label}>Street / Society / Office Name</div>
-      <input type="text" value="" className={classes.input} />
-      <div className={classes.label}>
-        <label>
-          <input type="radio"></input> Home
-        </label>
-        <label>
-          <input type="radio"></input> Office
-        </label>
-        <label>
-          <input type="radio"></input> Other
-        </label>
+      <div
+        style={{
+          lineHeight: 2.1,
+          padding: "1% 8%",
+        }}
+      >
+        <div className={classes.label}>Area / Locality</div>
+        <LocationPicker />
       </div>
-      <div>
-        <button className={classes.continueBtn}>Continue</button>
-        <button className={classes.cancelBtn}>Cancel</button>
+      <br />
+      <div
+        style={{
+          lineHeight: 2.5,
+          borderTop: "1px solid #ccc",
+          background: "#f9f9f9",
+          padding: "1% 8%",
+        }}
+      >
+        <div className={classes.label}>Name</div>
+        <div>
+          <select className={classes.select}>
+            <option value="Mr.">Mr</option>
+            <option value="Mrs.">Mrs</option>
+            <option value="Miss">Miss</option>
+          </select>
+          <input
+            type="text"
+            value=""
+            className={classes.selectInput}
+            required
+          />
+        </div>
+        <div className={classes.label}>Flat / House / Office No.</div>
+        <input type="text" value="" className={classes.input} required />
+        <div className={classes.label}>Street / Society / Office Name</div>
+        <input type="text" value="" className={classes.input} required />
+        <div className={classes.label}>
+          <label>
+            <input type="radio" required></input> Home
+          </label>
+          <label>
+            <input type="radio" required></input> Office
+          </label>
+          <label>
+            <input type="radio" required></input> Other
+          </label>
+        </div>
+        <div>
+          <button className={classes.continueBtn}>Continue</button>
+          <button className={classes.cancelBtn}>Cancel</button>
+        </div>
       </div>
     </div>
   );

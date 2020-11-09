@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import StyledMenu from "../../Common/StyledMenu";
 import UnAuthOptions from "./UnAuthOptions";
+import AuthOptions from "./AuthOptions";
 import CustomModal from "../../CustomModal";
 import Login from "../Login";
 
@@ -48,7 +49,11 @@ const Menu = () => {
       </div>
 
       <StyledMenu anchorEl={anchorEl} handleClose={() => setAnchorEl(null)}>
-        <UnAuthOptions openLoginModal={() => setOpenLoginModal(true)} />
+        {auth ? (
+          <AuthOptions openLoginModal={() => setOpenLoginModal(true)} />
+        ) : (
+          <UnAuthOptions openLoginModal={() => setOpenLoginModal(true)} />
+        )}
       </StyledMenu>
 
       <CustomModal
