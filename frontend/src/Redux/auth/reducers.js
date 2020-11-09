@@ -18,6 +18,7 @@ const initState = {
   message: "",
   loading: false,
   otpSend: false,
+  phoneNumber: "",
   location: {
     name: "",
     _id: "",
@@ -44,8 +45,8 @@ const reducers = (state = initState, { type, payload }) => {
 
     case VALIDATE_OTP_SUCCESS:
     case LOGIN_LOAD:
-      const { token } = payload;
-      return { ...state, auth: true, loading: false, token };
+      const { token, phoneNumber } = payload;
+      return { ...state, auth: true, phoneNumber, loading: false, token };
 
     case SET_LOCATION:
       return { ...state, location: payload };

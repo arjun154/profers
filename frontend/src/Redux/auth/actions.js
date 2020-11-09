@@ -57,6 +57,7 @@ export const validateOtp = (number, otp) => async (dispatch) => {
 
   try {
     const { data } = await api.post(`/accounts/${number}`, { otp });
+    data.phoneNumber = number;
     dispatch(validateOtpSuccess(data));
     localStorage.setItem("auth", JSON.stringify(data));
   } catch (error) {

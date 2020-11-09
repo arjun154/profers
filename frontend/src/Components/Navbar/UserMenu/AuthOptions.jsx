@@ -3,9 +3,13 @@ import { ListItemIcon, ListItemText } from "@material-ui/core";
 import StyledMenuItem from "../../Common/StyledMenuItem";
 import { Link } from "react-router-dom";
 import Styles from "../../MyOrders/styles.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../Redux/auth/actions";
 
 const UnAuthOptions = ({ openLoginModal }) => {
-  const [phoneNumber] = React.useState("8279880948");
+  const dispatch = useDispatch();
+  const { phoneNumber } = useSelector((state) => state.auth);
+
   return (
     <>
       <StyledMenuItem>
@@ -81,7 +85,7 @@ const UnAuthOptions = ({ openLoginModal }) => {
         <ListItemText primary="Offers" style={{ color: "gray" }} />
       </StyledMenuItem>
 
-      <StyledMenuItem>
+      <StyledMenuItem onClick={() => dispatch(logout())}>
         <ListItemIcon>
           <i class="fal fa-user"></i>
         </ListItemIcon>

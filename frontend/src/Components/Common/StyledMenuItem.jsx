@@ -12,8 +12,10 @@ const CustomStyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-const StyledMenuItem = ({ children }) => {
-  return <CustomStyledMenuItem>{children}</CustomStyledMenuItem>;
+const StyledMenuItem = ({ children, onClick }) => {
+  return (
+    <CustomStyledMenuItem onClick={onClick}>{children}</CustomStyledMenuItem>
+  );
 };
 
 export default StyledMenuItem;
