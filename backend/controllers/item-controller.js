@@ -65,6 +65,7 @@ const getItems = async (req, res) => {
           varieties: 1,
           images: 1,
           createdAt: 1,
+          productDetails: 1,
         },
       },
     ]);

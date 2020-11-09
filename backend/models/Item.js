@@ -86,6 +86,7 @@ const itemSchema = new Schema(
       required: true,
     },
     varieties: [varietySchema],
+    productDetails: [{}],
   },
   { timestamps: true }
 );
