@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 
 const addItem = async (req, res) => {
   try {
-    const images = req.files.map((image) => ({ name: image.filename }));
+    const images = req.files.map((image) => ({
+      name: image.key,
+      location: image.location,
+    }));
 
     const data = {
       ...req.body,
