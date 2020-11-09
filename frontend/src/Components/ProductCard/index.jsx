@@ -3,7 +3,7 @@ import styles from "./productCard.module.css";
 import Button from "../Button/index";
 import Box from "@material-ui/core/Box";
 import { Card } from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function ProductCard(props) {
   const history = useHistory();

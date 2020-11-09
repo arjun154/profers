@@ -2,8 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
-import { fade } from "@material-ui/core";
 import Suggestions from "./Suggestions";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchBar = () => {
   const classes = useStyles();
+
+  const [query, setQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
   return (
     <div className={classes.root}>
       <InputBase
@@ -58,13 +62,16 @@ const SearchBar = () => {
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
+        value={query}
+        onFocus={() => setShowSuggestions(true)}
+        onBlur={() => setShowSuggestions(false)}
+        onChange={(e) => setQuery(e.target.value)}
         inputProps={{ "aria-label": "search" }}
       />
+      {showSuggestions && <Suggestions query={query} />}
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
-
-      <Suggestions />
     </div>
   );
 };
