@@ -2,6 +2,7 @@ import {
   GET_OTP_FAILURE,
   GET_OTP_REQUEST,
   GET_OTP_SUCCESS,
+  SET_LOCATION,
   VALIDATE_OTP_FAILURE,
   VALIDATE_OTP_REQUEST,
   VALIDATE_OTP_SUCCESS,
@@ -15,6 +16,10 @@ const initState = {
   message: "",
   loading: false,
   otpSend: true,
+  location: {
+    name: "",
+    _id: "",
+  },
 };
 
 const reducers = (state = initState, { type, payload }) => {
@@ -38,6 +43,9 @@ const reducers = (state = initState, { type, payload }) => {
     case VALIDATE_OTP_SUCCESS:
       const { token } = payload;
       return { ...state, auth: true, loading: false, token };
+
+    case SET_LOCATION:
+      return { ...state, location: payload };
 
     default:
       return state;

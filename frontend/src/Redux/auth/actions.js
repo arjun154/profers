@@ -3,6 +3,7 @@ import {
   GET_OTP_FAILURE,
   GET_OTP_REQUEST,
   GET_OTP_SUCCESS,
+  SET_LOCATION,
   VALIDATE_OTP_FAILURE,
   VALIDATE_OTP_REQUEST,
   VALIDATE_OTP_SUCCESS,
@@ -59,3 +60,9 @@ export const validateOtp = (number, otp) => async (dispatch) => {
     dispatch(validateOtpFailure(error?.response?.data || error.message));
   }
 };
+
+// set location
+export const setLocation = (payload) => ({
+  type: SET_LOCATION,
+  payload,
+});
