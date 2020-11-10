@@ -5,7 +5,7 @@ import Categories from "./Categories";
 
 function Home() {
   return (
-    <div>
+    <div className={styles.root}>
       <div>
         <Categories />
       </div>

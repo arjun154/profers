@@ -8,6 +8,10 @@ const useStyles = makeStyles((theme) => ({
     width: "450px",
     textAlign: "center",
     padding: "1rem 2rem",
+
+    "&:focus": {
+      outline: "none !important",
+    },
   },
   title: {
     fontSize: "16px",
@@ -29,7 +33,7 @@ const SearchLocation = ({ anchorEl, handleClose }) => {
         </Typography>
 
         <div className={classes.searchContainer}>
-          <SearchBar />
+          <SearchBar handleClose={handleClose} />
         </div>
       </div>
     </StyledMenu>

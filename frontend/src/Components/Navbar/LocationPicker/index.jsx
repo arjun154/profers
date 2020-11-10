@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import SearchLocation from "./SearchLocation";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,7 @@ const LocationPicker = () => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const { location } = useSelector((state) => state.auth);
 
   return (
     <>
@@ -35,7 +37,7 @@ const LocationPicker = () => {
         <div>
           <i className="fal fa-map-marker-alt"></i>
         </div>
-        <div>New Delhi</div>
+        <div>{location?.name || "Select location"}</div>
         <div>
           <i className="fal fa-chevron-down"></i>
         </div>
