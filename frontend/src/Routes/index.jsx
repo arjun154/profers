@@ -4,6 +4,7 @@ import addresses from "../Components/MyOrders/MyAddresses/Addresses";
 import ordersPage from "../Components/MyOrders/Orders";
 import Home from "../Pages/Home";
 import Product from "../Pages/Product";
+import CategoryPage from "../Pages/Categories";
 
 const Routes = () => {
   return (
@@ -12,6 +13,7 @@ const Routes = () => {
       <Route path="/account/orders" component={ordersPage} />
       <Route path="/account/addresses" component={addresses} />
       <Route path="/productCate/:id" exact component={Product} />
+      <Route path="/:category/:subCategory" exact component={CategoryPage} />
     </Switch>
   );
 };

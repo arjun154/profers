@@ -1,5 +1,5 @@
 import React from "react";
-import LocationPicker from "../../Navbar/LocationPicker/SearchBar";
+import LocationPicker from "./Searchbar";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
