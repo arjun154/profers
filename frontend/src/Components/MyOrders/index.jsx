@@ -21,17 +21,17 @@ const OrdersPage = () => {
         <div className={Styles.tabs}>
           <div className={Styles.tabPanel}>
             <Link to="/account/addresses" className={Styles.link}>
-              <i class="fal fa-map-marked-alt"></i> My Addresses
+              <i className="fal fa-map-marked-alt"></i> My Addresses
             </Link>
           </div>
           <div className={Styles.tabPanel}>
             <Link to="/account/orders" className={Styles.link}>
-              <i class="fal fa-business-time"></i> My Orders
+              <i className="fal fa-business-time"></i> My Orders
             </Link>
           </div>
           <div className={Styles.tabPanel}>
             <i
-              class="fal fa-rupee-sign"
+              className="fal fa-rupee-sign"
               style={{
                 border: "1px solid grey",
                 padding: "2px 5px",
@@ -42,7 +42,7 @@ const OrdersPage = () => {
           </div>
           <div className={Styles.tabPanel}>
             {" "}
-            <i class="fal fa-user"></i> Logout
+            <i className="fal fa-user"></i> Logout
           </div>
         </div>
       </div>

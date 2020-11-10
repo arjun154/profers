@@ -27,7 +27,7 @@ const UnAuthOptions = ({ openLoginModal }) => {
 
       <StyledMenuItem>
         <ListItemIcon>
-          <i class="fal fa-business-time"></i>
+          <i className="fal fa-business-time"></i>
         </ListItemIcon>
         <ListItemText>
           <Link
@@ -44,7 +44,7 @@ const UnAuthOptions = ({ openLoginModal }) => {
 
       <StyledMenuItem>
         <ListItemIcon>
-          <i class="fal fa-map-marked-alt"></i>
+          <i className="fal fa-map-marked-alt"></i>
         </ListItemIcon>
         <ListItemText>
           <Link
@@ -60,7 +60,7 @@ const UnAuthOptions = ({ openLoginModal }) => {
       <StyledMenuItem>
         <ListItemIcon>
           <i
-            class="fal fa-rupee-sign"
+            className="fal fa-rupee-sign"
             style={{
               border: "1px solid grey",
               padding: "2px 5px",
@@ -87,7 +87,7 @@ const UnAuthOptions = ({ openLoginModal }) => {
 
       <StyledMenuItem onClick={() => dispatch(logout())}>
         <ListItemIcon>
-          <i class="fal fa-user"></i>
+          <i className="fal fa-user"></i>
         </ListItemIcon>
         <ListItemText style={{ color: "gray" }}>Logout</ListItemText>
       </StyledMenuItem>
