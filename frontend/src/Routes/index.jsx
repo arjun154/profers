@@ -13,7 +13,11 @@ const Routes = () => {
       <Route path="/account/orders" component={ordersPage} />
       <Route path="/account/addresses" component={addresses} />
       <Route path="/productCate/:id" exact component={Product} />
-      <Route path="/:category/:subCategory" exact component={CategoryPage} />
+      <Route
+        path="/:category"
+        exact
+        render={(props) => <CategoryPage {...props} />}
+      />
     </Switch>
   );
 };

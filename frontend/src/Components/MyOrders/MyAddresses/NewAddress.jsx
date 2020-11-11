@@ -96,6 +96,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewAddress() {
   const classes = useStyles();
+  const [name, setName] = React.useState("");
+  const [flatNo, setFlatNo] = React.useState("");
+  const [street, setStreet] = React.useState("");
+  const [title, setTitle] = React.useState("");
+
   return (
     <div className={classes.addressModal}>
       <div className={classes.addressHeading}>
@@ -124,22 +129,40 @@ export default function NewAddress() {
       >
         <div className={classes.label}>Name</div>
         <div>
-          <select className={classes.select}>
+          <select
+            className={classes.select}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          >
+            <option value="">Title</option>
             <option value="Mr.">Mr</option>
             <option value="Mrs.">Mrs</option>
             <option value="Miss">Miss</option>
           </select>
           <input
             type="text"
-            value=""
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className={classes.selectInput}
             required
           />
         </div>
         <div className={classes.label}>Flat / House / Office No.</div>
-        <input type="text" value="" className={classes.input} required />
+        <input
+          type="text"
+          value={flatNo}
+          onChange={(e) => setFlatNo(e.target.value)}
+          className={classes.input}
+          required
+        />
         <div className={classes.label}>Street / Society / Office Name</div>
-        <input type="text" value="" className={classes.input} required />
+        <input
+          type="text"
+          value={street}
+          onChange={(e) => setStreet(e.target.value)}
+          className={classes.input}
+          required
+        />
         <div className={classes.label}>
           <label>
             <input type="radio" required></input> Home
