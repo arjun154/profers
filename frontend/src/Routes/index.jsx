@@ -18,6 +18,11 @@ const Routes = () => {
         exact
         render={(props) => <CategoryPage {...props} />}
       />
+      <Route
+        path="/:category/:subCategory"
+        exact
+        render={(props) => <CategoryPage {...props} />}
+      />
     </Switch>
   );
 };
