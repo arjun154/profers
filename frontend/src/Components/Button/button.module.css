@@ -15,6 +15,7 @@
 }
 .root {
   display: flex;
+  align-items: center;
   margin-top: 12px;
   margin-bottom: 12px;
 }
@@ -22,6 +23,9 @@
 .plus_button {
   height: 30px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: large;
   color: white;
   background: rgb(191, 80, 31);
