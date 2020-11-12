@@ -83,11 +83,13 @@ export default function PriceBox(props) {
               >
                 <SmallRoundButton
                   label="-"
+                  style={{ fontSize: "18px", width: "35px", height: "35px" }}
                   onClick={() => dispatch(removeFromCart(props.wholeItem._id))}
                 />
                 {qty}
                 <SmallRoundButton
                   label="+"
+                  style={{ fontSize: "18px", width: "35px", height: "35px" }}
                   onClick={() =>
                     dispatch(addToCart(props.wholeItem._id, props.wholeItem))
                   }
