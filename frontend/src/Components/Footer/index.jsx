@@ -15,7 +15,7 @@ function Footer() {
         <div className={styles.footer}>
           <div className={styles.image}>
             <img
-              src="footer-best-price-icon-6e8c699.png"
+              src="https://grofers.com/images/home/footer-best-price-icon-6e8c699.png"
               alt="best-price"
             ></img>
           </div>
@@ -31,7 +31,7 @@ function Footer() {
         <div className={styles.footer}>
           <div className={styles.image}>
             <img
-              src="footer-genuine-products-icon-d1ab1be.png"
+              src="https://grofers.com/images/home/footer-genuine-products-icon-d1ab1be.png"
               alt="genuine-products"
             />
           </div>
@@ -48,7 +48,7 @@ function Footer() {
         <div className={styles.footer}>
           <div className={styles.image}>
             <img
-              src="footer-easy-returns-icon-c85249b.png"
+              src="https://grofers.com/images/home/footer-easy-returns-icon-c85249b.png"
               alt="easy-return"
             ></img>
           </div>
@@ -65,7 +65,7 @@ function Footer() {
       </div>
       <hr />
       <div>
-        <h2>Profers - Online Grocery Shopping</h2>
+        <h2 style={{ marginTop: "1rem" }}>Profers - Online Grocery Shopping</h2>
         <h3>Online grocery store in India</h3>
         <p>
           Order online. All your favourite products from the low price online

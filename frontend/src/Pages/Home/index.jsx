@@ -2,7 +2,6 @@ import React from "react";
 import Category from "../../Components/Category/index";
 import styles from "./home.module.css";
 import Categories from "./Categories";
-
 function Home() {
   return (
     <div className={styles.root}>
@@ -27,10 +26,13 @@ function Home() {
           alt="ICICI"
         />
       </div>
-      <Category label="Fresh Fruits and Veggies" url="" />
-      <Category label="Festive Joy" url="" />
-      <Category label="Top Staples" url="" />
-      <Category label="Top Savers Today!" url="" />
+      <Category
+        label="Fresh Fruits and Veggies"
+        query="Vegetables %26 Fruits"
+      />
+      <Category label="Grocery & Staples" query="Grocery %26 Staples" />
+      {/* <Category label="Top Staples" url="" />
+      <Category label="Top Savers Today!" url="" /> */}
     </div>
   );
 }

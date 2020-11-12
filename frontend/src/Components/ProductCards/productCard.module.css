@@ -51,7 +51,7 @@
   font-family: "Roboto", sans-serif, helvetica;
 }
 
-.root:hover > div > img {
+.root:hover > div > div > img {
   position: relative;
   transition: transform 0.5s ease-out;
   transform: translateY(-5px);
@@ -59,7 +59,7 @@
 
 .root {
   cursor: pointer;
-  min-width: 217px;
+  min-width: 270px;
   margin-top: 20px;
   margin: 20px 6px;
   padding: 10px;

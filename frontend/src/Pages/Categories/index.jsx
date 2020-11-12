@@ -7,6 +7,7 @@ import axios from "axios";
 import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",

@@ -1,4 +1,4 @@
-const { ADD_TO_CART, REMOVE_FROM_CART } = require("./actionTypes");
+const { ADD_TO_CART, REMOVE_FROM_CART, LOAD_CART } = require("./actionTypes");
 
 export const addToCart = (id, item) => ({
   type: ADD_TO_CART,
@@ -7,5 +7,9 @@ export const addToCart = (id, item) => ({
 
 export const removeFromCart = (id) => ({
   type: REMOVE_FROM_CART,
-  payload: id,
+  payload: {id},
 });
+
+export const loadCart = () => ({
+  type: LOAD_CART
+})
