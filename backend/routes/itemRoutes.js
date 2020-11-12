@@ -8,7 +8,7 @@ const routes = require("express").Router();
 routes.get("/getBy", queryParser, getByCategory)
 routes.get("/getByCity/:city/:category", queryParser, getByCity);
 routes.get("/getBy/:category/:subCategory", queryParser, getItemsBySubCategory);
-routes.get("/", queryParser, getItems);
+routes.get("/:item/:city", queryParser, getItems);
 routes.post("/", uploadImages.array("photos", 12), addItem);
 
 module.exports = routes;

@@ -36,7 +36,7 @@ const ProductCard = ({ item }) => {
           <div className={styles.unit}>{item.varieties[0].size}</div>
         </div>
       </div>
-      <Button onClick={() => addItem(item._id, item.name)} />
+      <Button onClick={() => console.log("clicked")} />
     </Card>
   );
 };
