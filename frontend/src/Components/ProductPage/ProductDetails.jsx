@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [showButton, setShowButton] = React.useState(true);
@@ -28,13 +28,11 @@ export default function ProductDetails() {
       <div className={styles.itemDetailsBox}>
         <div>
           <div className={styles.subHeading}>Unit</div>
-          <div className={styles.productSubDetails}>2units (400-500g)</div>
+          <div className={styles.productSubDetails}>{props.details.unit}</div>
         </div>
         <div>
           <div className={styles.subHeading}>Seller</div>
-          <div className={styles.productSubDetails}>
-            90Minutes Retails Pvt Ltd(https://bit.ly/2QuoDoe)
-          </div>
+          <div className={styles.productSubDetails}>{props.details.seller}</div>
         </div>
         <div>
           {showButton && (
@@ -52,9 +50,7 @@ export default function ProductDetails() {
             <div>
               <div className={styles.subHeading}>Description</div>
               <div className={styles.productSubDetails}>
-                Pomegranate has a juicy cluster of sparkling, opaque, red
-                coloured seeds which taste sweet. It can be used for topping
-                desserts and to make juices and fruit salads.
+                {props.details.description}
               </div>
             </div>
 
