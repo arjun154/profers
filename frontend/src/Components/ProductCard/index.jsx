@@ -12,20 +12,25 @@ export default function ProductCard(props) {
     <Box display="flex" flexDirection="row" className={styles.box}>
       {props.items.map((item) => (
         <Card
-          key={item.id}
+          key={item._id}
           className={styles.root}
-          onClick={() => history.push(`/productCate/${item.id}`)}
+          onClick={() => history.push(`/productCate/${item.name}`)}
         >
           <div>
-            <img src={item.img} alt=""></img>
+            <img
+              src={item.images[0].location}
+              alt="item"
+              height="256px"
+              width="100%"
+            ></img>
           </div>
           <div className={styles.pricebox}>
-            <div className={styles.price}>₹{item.discountedPrice}</div>
-            <div className={styles.discount}>₹{item.actualPrice}</div>
+            <div className={styles.price}>₹{item.varieties[0].price}</div>
+            <div className={styles.discount}>₹{"hola"}</div>
           </div>
           <div className={styles.text}>
-            <div className={styles.description}>{item.productName}</div>
-            <div className={styles.unit}>{item.productDetail}</div>
+            <div className={styles.description}>{item.name}</div>
+            <div className={styles.unit}>{item.varieties[0].size}</div>
           </div>
           <Button />
         </Card>

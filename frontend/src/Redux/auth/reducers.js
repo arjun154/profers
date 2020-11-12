@@ -20,8 +20,8 @@ const initState = {
   otpSend: false,
   phoneNumber: "",
   location: {
-    name: "",
-    _id: "",
+    name: "Delhi",
+    _id: "5fa8f081b617da4fc95f04cd",
   },
 };
 
