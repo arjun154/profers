@@ -1,5 +1,6 @@
 import { Drawer, makeStyles } from "@material-ui/core";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Cart from "./Cart";
 import CartIcon from "./Icon";
 
@@ -34,11 +35,14 @@ const CartComponent = () => {
     setState({ ...state, [anchor]: open });
   };
 
+  const { count } = useSelector((state) => state.cart);
+
   return (
     <>
       <CartIcon
         className={classes.root}
         onClick={toggleDrawer("right", true)}
+        count={count}
       />
       <Drawer
         anchor={"right"}
