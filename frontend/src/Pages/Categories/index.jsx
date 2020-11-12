@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Card } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "../../Components/ProductCard/productCard.module.css";
+import styles from "../../Components/ProductCards/productCard.module.css";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 
