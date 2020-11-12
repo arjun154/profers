@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./category.module.css";
-import ProductCard from "../ProductCard/index";
+import ProductCards from "../ProductCards/index";
 import Card from "@material-ui/core/Card";
 import { CardContent } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
@@ -88,7 +88,7 @@ export default function Category(props) {
             </div>
           </div>
           <div>
-            <ProductCard items={data} />
+            <ProductCards items={data} />
           </div>
         </CardContent>
       </Card>
