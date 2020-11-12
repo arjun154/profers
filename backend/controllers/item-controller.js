@@ -23,10 +23,11 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   const { page, sortBy, sortOrder, limit, query } = req.queryObject;
-
+  const { item, city } = req.params;
+  
   try {
     const myAggregate = Item.aggregate([
-      { $match: { name: { $regex: query, $options: "i" } } },
+      { $match: { name: { $regex: item, $options: "i" } } },
       {
         $lookup: {
           from: "categories",
@@ -62,7 +63,13 @@ const getItems = async (req, res) => {
           subCategory: "$subCategory.name",
           name: 1,
           description: 1,
-          varieties: 1,
+          varieties: {
+            $filter: {
+              input: "$varieties",
+              as: "variety",
+              cond: { $eq: ["$$variety.city", mongoose.Types.ObjectId(city)] }
+            }
+          },
           images: 1,
           createdAt: 1,
           productDetails: 1,
