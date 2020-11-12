@@ -49,7 +49,7 @@ const ProductCard = ({ item }) => {
       {qty > 0 ? (
         <Box
           display="flex"
-          margin="6px 0"
+          margin="12px 0"
           justifyContent="space-between"
           alignItems="center"
         >

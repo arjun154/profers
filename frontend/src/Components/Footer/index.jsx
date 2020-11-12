@@ -65,7 +65,7 @@ function Footer() {
       </div>
       <hr />
       <div>
-        <h2>Profers - Online Grocery Shopping</h2>
+        <h2 style={{ marginTop: "1rem" }}>Profers - Online Grocery Shopping</h2>
         <h3>Online grocery store in India</h3>
         <p>
           Order online. All your favourite products from the low price online
