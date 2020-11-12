@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./product.module.css";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../Redux/cart/actions";
+import { Box } from "@material-ui/core";
+import SmallRoundButton from "../Button/SmallRoundButton";
 
 const useStyles = makeStyles({
   root: {
@@ -26,7 +30,17 @@ const useStyles = makeStyles({
 
 export default function PriceBox(props) {
   const classes = useStyles();
-  console.log(props);
+
+  const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.cart);
+
+  let qty = 0;
+  if (items[props.wholeItem._id]) {
+    qty = items[props.wholeItem._id].qty;
+  }
+
+  console.log(props.wholeItem);
+
   return (
     <>
       <div className={styles.productDetails}>
@@ -40,7 +54,7 @@ export default function PriceBox(props) {
           <div>
             <div>
               <span className={styles.pmrp}>Product MRP:</span>
-              <span className={styles.mrp}>{props.item.price}</span>
+              <span className={styles.mrp}>₹{props.item.price}</span>
             </div>
             <div className={styles.taxDisclamer}>(Inclusive of all taxes)</div>
           </div>
@@ -50,10 +64,36 @@ export default function PriceBox(props) {
               {props.item.size}
             </Button>
           </div>
-          <div>
-            <Button variant="contained" className={classes.cartButton}>
-              Add To cart
-            </Button>
+          <div style={{ maxWidth: "150px" }}>
+            {!qty ? (
+              <Button
+                onClick={() =>
+                  dispatch(addToCart(props.wholeItem._id, props.wholeItem))
+                }
+                variant="contained"
+                className={classes.cartButton}
+              >
+                Add To cart
+              </Button>
+            ) : (
+              <Box
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <SmallRoundButton
+                  label="-"
+                  onClick={() => dispatch(removeFromCart(props.wholeItem._id))}
+                />
+                {qty}
+                <SmallRoundButton
+                  label="+"
+                  onClick={() =>
+                    dispatch(addToCart(props.wholeItem._id, props.wholeItem))
+                  }
+                />
+              </Box>
+            )}
           </div>
         </div>
       </div>

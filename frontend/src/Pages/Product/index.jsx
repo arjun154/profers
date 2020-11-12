@@ -55,7 +55,7 @@ export default function Index() {
               <ProductImage images={data[0].images} />
             </Grid>
             <Grid item lg={6}>
-              <PriceBox item={item} />
+              <PriceBox wholeItem={data[0]} item={item} />
             </Grid>
           </Grid>
           <Grid container spacing={5}>

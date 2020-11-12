@@ -36,7 +36,7 @@ const reducers = (state = initState, { type, payload }) => {
     }
 
     case LOAD_CART: {
-      const cart = JSON.parse(localStorage.getItem("cart"))
+      const cart = JSON.parse(localStorage.getItem("cart")) || {items: {}, count: 0}
       return {...cart}
     }
     default:
