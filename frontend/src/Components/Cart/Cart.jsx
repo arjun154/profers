@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import CartListItem from "./CartListItem";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CartSummary from "./CartSummary";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
     "& > img": {
       margin: "1rem 0",
     },
+  },
+  link: {
+    textDecoration: "none",
+    color: "white ",
   },
 }));
 
@@ -100,7 +105,12 @@ const Cart = ({ toggleDrawer }) => {
               alignItems="center"
               justifyContent="space-between"
             >
-              <div>Proceed to Checkout</div>
+              <div>
+                <Link to="/checkout" className={classes.link}>
+                  {" "}
+                  Proceed to Checkout
+                </Link>
+              </div>
               <Box display="flex" alignItems="center">
                 ₹{subTotal} <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
               </Box>

@@ -7,7 +7,6 @@ import axios from "axios";
 import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
@@ -112,7 +111,7 @@ export default function CategoryPage(props) {
           </div>
         </AppBar>
         <div className={classes.flex}>
-          <Groceries />
+          {/* <Groceries /> */}
           <div className={classes.content}>
             <img
               src="https://grofers.com/images/banners/banner-edlp-e3d1bbb.jpg"
