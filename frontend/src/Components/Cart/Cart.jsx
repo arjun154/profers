@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import Styles from "./style.module.css";
 import { Box, makeStyles } from "@material-ui/core";
 

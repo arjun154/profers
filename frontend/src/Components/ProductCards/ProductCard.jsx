@@ -10,27 +10,33 @@ const ProductCard = ({ item }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const addItem = () => {
-    const id = item.varieties[0]._id;
+  const addItem = (id, item) => {
+    // console.log(id, item);
+    // const id = item.varieties[0]._id;
     dispatch(addToCart(id, item));
   };
 
   return (
-    <Card key={item.id} className={styles.root}>
-      <div onClick={() => history.push(`/productCate/${item.id}`)}>
+    <Card key={item._id} className={styles.root}>
+      <div onClick={() => history.push(`/productCate/${item.name}`)}>
         <div>
-          <img src={item.img} alt=""></img>
+          <img
+            src={item.images[0].location}
+            alt="item"
+            height="250px"
+            width="250px"
+          ></img>
         </div>
         <div className={styles.pricebox}>
-          <div className={styles.price}>₹{item.discountedPrice}</div>
-          <div className={styles.discount}>₹{item.actualPrice}</div>
+          <div className={styles.price}>₹{item.varieties[0].price}</div>
+          <div className={styles.discount}>₹{"hola hu"}</div>
         </div>
         <div className={styles.text}>
-          <div className={styles.description}>{item.productName}</div>
-          <div className={styles.unit}>{item.productDetail}</div>
+          <div className={styles.description}>{item.name}</div>
+          <div className={styles.unit}>{item.varieties[0].size}</div>
         </div>
       </div>
-      <Button onClick={() => console.log("clicked")} />
+      <Button onClick={() => addItem(item._id, item.name)} />
     </Card>
   );
 };

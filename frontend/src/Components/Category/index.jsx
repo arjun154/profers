@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 export default function Category(props) {
   const { location } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
-  console.log(location.name);
+
   const query = props.query;
   useEffect(() => {
     fetchData();
