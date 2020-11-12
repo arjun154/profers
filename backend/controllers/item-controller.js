@@ -23,11 +23,48 @@ const addItem = async (req, res) => {
 
 const getItems = async (req, res) => {
   const { page, sortBy, sortOrder, limit, query } = req.queryObject;
-  const { item, city } = req.params;
+  const { id, city } = req.params;
+
+  try {
+    const myAggregate = Item.aggregate([
+      { $match: { _id: mongoose.Types.ObjectId(`${id}`) } },
+      {
+        $project: {
+          category: "$category.name",
+          subCategory: "$subCategory.name",
+          name: 1,
+          description: 1,
+          varieties: {
+            $filter: {
+              input: "$varieties",
+              as: "variety",
+              cond: { $eq: ["$$variety.city", mongoose.Types.ObjectId(city)] }
+            }
+          },
+          images: 1,
+          createdAt: 1,
+          productDetails: 1,
+        },
+      }
+    ]);
+
+    const items = await Item.aggregatePaginate(myAggregate, {
+      page,
+      limit,
+      sort: { [sortBy]: sortOrder },
+    });
+    res.json(items);
+  } catch (error) {
+    res.status(400).json({message: error.message})
+  }
+}
+const getItemsByLocation = async (req, res) => {
+  const { page, sortBy, sortOrder, limit, query } = req.queryObject;
+  const { city } = req.params;
   
   try {
     const myAggregate = Item.aggregate([
-      { $match: { name: { $regex: item, $options: "i" } } },
+      { $match: { name: { $regex: query, $options: "i" } } },
       {
         $lookup: {
           from: "categories",
@@ -87,4 +124,4 @@ const getItems = async (req, res) => {
   }
 };
 
-module.exports = { addItem, getItems };
+module.exports = { addItem, getItems, getItemsByLocation };

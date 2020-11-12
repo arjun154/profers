@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import api from "../../../utils/api";
 import { debounce } from "../../../utils/debounce";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Suggestions = ({ query }) => {
+  const { location } = useSelector((state) => state.auth);
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
@@ -47,6 +49,7 @@ const Suggestions = ({ query }) => {
       const { data } = await api.get("/products", {
         params: {
           query,
+          location,
           limit: 10,
         },
       });

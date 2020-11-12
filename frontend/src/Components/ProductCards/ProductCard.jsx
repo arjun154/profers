@@ -27,7 +27,7 @@ const ProductCard = ({ item }) => {
 
   return (
     <Card key={item._id} className={styles.root}>
-      <div onClick={() => history.push(`/productCate/${item.name}`)}>
+      <div onClick={() => history.push(`/productCate/${item._id}`)}>
         <div style={{ position: "relative" }}>
           {sale > 0 && <div className={styles.saleTag}>{sale}% OFF</div>}
           <img
