@@ -21,10 +21,15 @@ const ProductCard = ({ item }) => {
     qty = items[item._id].qty;
   }
 
+  const variety = item.varieties[0];
+  const { price, sale } = variety;
+  const realPriceAfterDiscount = price - (price * sale) / 100;
+
   return (
     <Card key={item._id} className={styles.root}>
       <div onClick={() => history.push(`/productCate/${item.name}`)}>
-        <div>
+        <div style={{ position: "relative" }}>
+          {sale > 0 && <div className={styles.saleTag}>{sale}% OFF</div>}
           <img
             src={item.images[0].location}
             alt="item"
@@ -33,8 +38,8 @@ const ProductCard = ({ item }) => {
           ></img>
         </div>
         <div className={styles.pricebox}>
-          <div className={styles.price}>₹{item.varieties[0].price}</div>
-          <div className={styles.discount}>₹{"hola hu"}</div>
+          <div className={styles.price}>₹{realPriceAfterDiscount}</div>
+          <div className={styles.discount}>₹{item.varieties[0].price}</div>
         </div>
         <div className={styles.text}>
           <div className={styles.description}>{item.name}</div>
