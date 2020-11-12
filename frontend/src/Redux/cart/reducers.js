@@ -17,7 +17,7 @@ const reducers = (state = initState, { type, payload }) => {
         item.qty = 1;
         items[id] = item;
       }
-      return { ...state, count: count + 1 };
+      return { ...state, items: {...items}, count: count + 1 };
     }
     case REMOVE_FROM_CART: {
       const { count, items } = state;
@@ -27,7 +27,7 @@ const reducers = (state = initState, { type, payload }) => {
       if (items[id].qty === 0) {
         delete items[id];
       }
-      return { ...state, count: count - 1 };
+      return { ...state, items: {...items}, count: count - 1 };
     }
     default:
       return state;

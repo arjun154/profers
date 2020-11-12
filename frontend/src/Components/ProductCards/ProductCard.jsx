@@ -11,8 +11,6 @@ const ProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
   const addItem = (id, item) => {
-    // console.log(id, item);
-    // const id = item.varieties[0]._id;
     dispatch(addToCart(id, item));
   };
 
@@ -36,7 +34,7 @@ const ProductCard = ({ item }) => {
           <div className={styles.unit}>{item.varieties[0].size}</div>
         </div>
       </div>
-      <Button onClick={() => addItem(item._id, item.name)} />
+      <Button onClick={() => addItem(item._id, item)} />
     </Card>
   );
 };
