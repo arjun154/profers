@@ -1,41 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@material-ui/core";
-import styles from "../../Components/ProductCards/productCard.module.css";
+import styles from "./Categories.module.css";
+import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import api from "../../utils/api";
 
 export default function CategoryCard() {
-  return (
-    <div style={{ display: "flex", width: "90px" }}>
-      <Card className={styles.root}>
-        <div>
-          <img
-            style={{ width: "150px" }}
-            src="https://cdn.grofers.com/app/images/products/normal/pro_389904.jpg"
-            alt=""
-          ></img>
-        </div>
+  const history = useHistory();
+  const { category } = useParams();
+  const { location } = useSelector((state) => state.auth);
+  const [data, setData] = useState([]);
 
-        <div className={styles.text}>
-          <div className={styles.description} style={{ fontSize: "12px" }}>
-            Profers Mother's Choice Unpolished White Urad Gota/Gola
+  useEffect(() => {
+    api
+      .get(`/products/getByCity/${location.name}/${category}`)
+      .then((res) => {
+        setData(res.data.docs);
+      })
+      .catch((err) => console.log(err));
+  }, [category, location.name]);
+
+  return (
+    <>
+      {data.length > 0 ? (
+        <div>
+          <div className={styles.products}>
+            {data.map((item) => (
+              <Card
+                key={item._id}
+                className={styles.root}
+                variant="outlined"
+                onClick={() => history.push(`/productCate/${item._id}`)}
+              >
+                <div style={{ position: "relative" }}>
+                  {item.varieties[0].sale > 0 && (
+                    <div className={styles.saleTag}>
+                      {item.varieties[0].sale}% OFF
+                    </div>
+                  )}
+                  <div>
+                    <img
+                      height="200px"
+                      width="200px"
+                      src={item.images[0].location}
+                      alt={item._id}
+                    ></img>
+                  </div>
+                  <div className={styles.text}>
+                    <div className={styles.description}>{item.name}</div>
+                  </div>
+                  <div style={{ float: "left" }}>
+                    <div className={styles.price}>
+                      ₹
+                      {Math.floor(
+                        item.varieties[0].price -
+                          (item.varieties[0].price * item.varieties[0].sale) /
+                            100
+                      )}
+                    </div>
+                    <div className={styles.discount}>
+                      ₹{item.varieties[0].price}
+                    </div>
+                  </div>
+                </div>
+                <button className={styles.button}>Add to Cart</button>
+              </Card>
+            ))}
           </div>
         </div>
-        <div className={styles.pricebox} style={{ float: "left" }}>
-          <div className={styles.price}>₹76</div>
-          <div className={styles.discount}>₹90</div>
-        </div>
-        <button
-          style={{
-            padding: "2% 7%",
-            borderRadius: "68px",
-            float: "right",
-            outline: "none",
-            color: "#e96125",
-            border: "1px solid #e96125",
-          }}
-        >
-          Add to Cart
-        </button>
-      </Card>
-    </div>
+      ) : (
+        <h1>Loading</h1>
+      )}
+    </>
   );
 }
