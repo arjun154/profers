@@ -9,6 +9,7 @@ import CategoryCard from "./CategoryCard";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() => ({
+
   root: {
     position: "fixed",
     backgroundColor: "white",
