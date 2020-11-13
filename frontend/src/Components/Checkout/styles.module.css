@@ -1,0 +1,20 @@
+.cardContainer:hover {
+  border: 1px solid lightgrey;
+}
+
+.paymentBtn {
+  background: #e96125;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  display: inline-block;
+  width: 70%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 13px 12px;
+  text-align: center;
+}
