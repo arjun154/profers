@@ -67,7 +67,7 @@
   margin: 0 !important;
   float: left;
   position: absolute;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .root {
