@@ -10,10 +10,6 @@
   color: grey;
 }
 
-.box > p {
-  padding: 0.5rem 0;
-}
-
 .image {
   margin-right: 10px;
 }

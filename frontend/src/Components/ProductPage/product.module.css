@@ -38,14 +38,31 @@
   margin-left: 5px;
 }
 
-.pmrp {
-  color: #333;
+.Oldmrp {
+  color: #999;
   font-size: 16px;
+}
+
+.pmrp {
   padding-right: 10px;
 }
 
 .mrp {
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.NewPrice {
   color: #333;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.sellingPrice {
+  padding-right: 10px;
+}
+
+.price {
   font-size: 24px;
   font-weight: 500;
 }
@@ -138,4 +155,16 @@
 
 .top {
   margin-top: 5px;
+}
+
+.saleTag {
+  color: white;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 4px;
+  width: 60px;
+  font-size: 12px;
+  padding: 0.2rem;
+  margin: 0 !important;
+  /* float: left; */
 }

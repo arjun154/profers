@@ -6,6 +6,7 @@ import CartListItem from "./CartListItem";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CartSummary from "./CartSummary";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = ({ toggleDrawer }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const { count, items } = useSelector((state) => state.cart);
 

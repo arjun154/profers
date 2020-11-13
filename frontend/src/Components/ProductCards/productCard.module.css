@@ -57,10 +57,22 @@
   transform: translateY(-5px);
 }
 
+.saleTag {
+  color: white;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 0.2rem;
+  margin: 0 !important;
+  float: left;
+  position: absolute;
+  z-index: 1000;
+}
+
 .root {
   cursor: pointer;
   min-width: 270px;
-  margin-top: 20px;
   margin: 20px 6px;
   padding: 10px;
   border: 0px solid black;

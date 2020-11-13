@@ -39,11 +39,15 @@ export default function PriceBox(props) {
     qty = items[props.wholeItem._id].qty;
   }
 
-  console.log(props.wholeItem);
+  const { price, sale } = props.item;
+  const mrp = price - (price * sale) / 100;
 
   return (
     <>
       <div className={styles.productDetails}>
+        {props.item.sale > 0 && (
+          <div className={styles.saleTag}>{props.item.sale}% OFF</div>
+        )}
         <div className={styles.productName}>
           <h3 className={styles.head}>{props.item.name}</h3>
           {/* make link for G fresh */}
@@ -52,9 +56,13 @@ export default function PriceBox(props) {
             <span className={styles.spanlink}>G Fresh ></span>
           </h4>
           <div>
-            <div>
+            <div className={styles.Oldmrp}>
               <span className={styles.pmrp}>Product MRP:</span>
-              <span className={styles.mrp}>₹{props.item.price}</span>
+              <span className={styles.mrp}>₹{price}</span>
+            </div>
+            <div className={styles.NewPrice}>
+              <span className={styles.sellingPrice}>Selling Price:</span>
+              <span className={styles.price}>₹{mrp}</span>
             </div>
             <div className={styles.taxDisclamer}>(Inclusive of all taxes)</div>
           </div>

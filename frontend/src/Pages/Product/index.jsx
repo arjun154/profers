@@ -37,6 +37,7 @@ export default function Index() {
       name: data[0].name,
       price: data[0].varieties[0].price,
       size: data[0].varieties[0].size,
+      sale: data[0].varieties[0].sale,
     };
 
     var details = {
