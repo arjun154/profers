@@ -28,7 +28,7 @@ export default function Index() {
         setData(res.data.docs);
       })
       .catch((err) => console.log(err));
-  }, [location._id]);
+  }, [location._id, id]);
 
   const classes = useStyles();
 

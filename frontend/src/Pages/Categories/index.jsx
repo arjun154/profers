@@ -7,7 +7,6 @@ import axios from "axios";
 import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
@@ -67,8 +66,6 @@ export default function CategoryPage(props) {
       .catch((err) => {
         console.log(err);
       });
-    const category = props.match.params.category;
-    console.log(category);
   }, []);
 
   if (data.length > 0) {

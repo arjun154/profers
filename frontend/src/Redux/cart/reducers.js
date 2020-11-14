@@ -1,4 +1,3 @@
-import { loadCart } from "./actions";
 import { ADD_TO_CART, LOAD_CART, REMOVE_FROM_CART } from "./actionTypes";
 
 const initState = {

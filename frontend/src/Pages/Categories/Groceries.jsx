@@ -5,6 +5,7 @@ import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import { useParams } from "react-router-dom";
 
 const Accordion = withStyles({
   root: {
@@ -78,11 +79,12 @@ export default function Groceries(props) {
   const [subCateg, setSubCateg] = React.useState([]);
   const [expanded, setExpanded] = React.useState("panel1");
 
+  const { category } = useParams();
+
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
   useEffect(() => {
-    const category = props.match.params.category;
     console.log(category);
     axios({
       method: "get",

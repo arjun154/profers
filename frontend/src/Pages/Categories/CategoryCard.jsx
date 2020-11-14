@@ -1,8 +1,11 @@
 import React from "react";
 import { Card } from "@material-ui/core";
 import styles from "../../Components/ProductCards/productCard.module.css";
+import { useParams } from "react-router-dom";
 
 export default function CategoryCard() {
+  const { category } = useParams();
+
   return (
     <div style={{ display: "flex", width: "90px" }}>
       <Card className={styles.root}>

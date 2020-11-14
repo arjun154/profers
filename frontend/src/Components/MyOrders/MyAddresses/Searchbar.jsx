@@ -86,7 +86,7 @@ const listStyles = {
   display: "block",
 };
 
-const SearchBar = ({ handleClose }) => {
+const SearchBar = ({ handleClose, onChange }) => {
   const classes = useStyles();
   const [showList, setShowList] = useState(false);
   const [input, setInput] = useState("");
@@ -105,10 +105,9 @@ const SearchBar = ({ handleClose }) => {
   }, [input, search]);
 
   const handleSetLocation = (item) => {
-    console.log(item);
     setInput(item.place_name);
+    onChange && onChange(item.place_name);
   };
-  console.log(suggestions);
   const handleInputChange = (value) => {
     setInput(value);
     axios({
@@ -123,7 +122,6 @@ const SearchBar = ({ handleClose }) => {
       },
     })
       .then((res) => {
-        console.log(res);
         setSuggestions(res.data.features);
       })
       .catch((err) => {
@@ -164,7 +162,7 @@ const SearchBar = ({ handleClose }) => {
             className={classes.suggestions}
           >
             {suggestions.map((item) => (
-              <div key={item._id} onMouseDown={() => handleSetLocation(item)}>
+              <div key={item.id} onMouseDown={() => handleSetLocation(item)}>
                 {item.place_name}
               </div>
             ))}
