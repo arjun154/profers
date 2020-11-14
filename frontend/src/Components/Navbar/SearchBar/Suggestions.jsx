@@ -62,7 +62,7 @@ const Suggestions = ({ query }) => {
       }
     };
 
-    debounce(search, 1000);
+    return debounce(search, 1000);
   }, [location]);
 
   useEffect(() => {
