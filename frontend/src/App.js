@@ -19,9 +19,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navbar /> */}
-      {/* <Routes /> */}
-      {/* <Footer /> */}
+      <Navbar />
+      <Routes />
+      <Footer />
       <Route path="/checkout" exact component={Checkout} />
     </div>
   );
