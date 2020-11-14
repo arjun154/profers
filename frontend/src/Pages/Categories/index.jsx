@@ -2,13 +2,14 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
+import { useSelector } from "react-redux";
 
+const useStyles = makeStyles(() => ({
 
-const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     backgroundColor: "white",
@@ -52,9 +53,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CategoryPage(props) {
-  const classes = useStyles();
+export default function CategoryPage() {
   const [data, setData] = React.useState([]);
+  const classes = useStyles();
 
   useEffect(() => {
     axios({
@@ -67,8 +68,6 @@ export default function CategoryPage(props) {
       .catch((err) => {
         console.log(err);
       });
-    const category = props.match.params.category;
-    console.log(category);
   }, []);
 
   if (data.length > 0) {
@@ -112,7 +111,7 @@ export default function CategoryPage(props) {
           </div>
         </AppBar>
         <div className={classes.flex}>
-          <Groceries />
+          {/* <Groceries /> */}
           <div className={classes.content}>
             <img
               src="https://grofers.com/images/banners/banner-edlp-e3d1bbb.jpg"
