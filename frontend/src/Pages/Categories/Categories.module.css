@@ -1,0 +1,74 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5%;
+}
+
+.button {
+  padding: 2% 7%;
+  border-radius: 68px;
+  float: right;
+  outline: none;
+  color: #e96125;
+  border: 1px solid #e96125;
+}
+
+.root {
+  cursor: pointer;
+  width: 240px;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.root:hover > div > div > img {
+  position: relative;
+  transition: transform 0.5s ease-out;
+  transform: translateY(-5px);
+}
+
+.root:hover {
+  border: 1px solid rgb(196, 195, 195);
+}
+
+.text {
+  margin: 4px 10px 8px 10px;
+  height: 44px;
+}
+
+.description {
+  text-align: justify;
+  margin-left: 10;
+  color: #666;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif, helvetica;
+}
+
+.price {
+  margin: 2px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif, helvetica;
+}
+
+.discount {
+  text-decoration-line: line-through;
+  color: #999;
+  margin-left: 4px;
+  font-size: 16px;
+  margin-top: 4px;
+  font-family: "Roboto", sans-serif, helvetica;
+}
+
+.saleTag {
+  color: white;
+  background-color: green;
+  border: 2px solid green;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 0.2rem;
+  margin: 0 !important;
+  float: left;
+  position: absolute;
+  z-index: 1000;
+}
