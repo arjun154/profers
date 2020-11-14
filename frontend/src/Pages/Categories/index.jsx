@@ -8,8 +8,7 @@ import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles(() => ({
-
+const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     backgroundColor: "white",
