@@ -32,13 +32,10 @@ export default function Payment() {
 
   const { items } = useSelector((state) => state.cart);
 
-  let totalSaved = 0;
-
   const subTotal = Object.keys(items)
     .map((key) => {
       const totalPrice = items[key].varieties[0].price * items[key].qty;
       const totalSale = (totalPrice * items[key].varieties[0].sale) / 100;
-      totalSaved += totalSale;
       return totalPrice - totalSale;
     })
     .reduce((a, c) => a + c, 0);

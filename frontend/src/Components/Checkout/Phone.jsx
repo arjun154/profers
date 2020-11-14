@@ -4,7 +4,7 @@ import React from "react";
 // import NewAddress from "../MyOrders/MyAddresses/NewAddress";
 import AddressCard from "./AddressCard";
 import Payment from "./Payment";
-import AddressModal from "../MyOrders/MyAddresses/AddressModal";
+import AddressModal from "../Account/MyAddresses/AddressModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {

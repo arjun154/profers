@@ -23,7 +23,7 @@ export default function Category(props) {
         })
         .catch((err) => console.log(err));
     }
-  }, [location.name]);
+  }, [location.name, query]);
 
   return (
     <Container disableGutters={true}>

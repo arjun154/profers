@@ -81,6 +81,7 @@ export default function Veggies(props) {
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
+
   useEffect(() => {
     const category = props.match.params.category;
     console.log(category);
@@ -95,8 +96,7 @@ export default function Veggies(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  console.log(subCateg, expanded);
+  }, [props.match.params.category]);
 
   return (
     <div>

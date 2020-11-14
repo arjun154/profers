@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Styles from "../styles.module.css";
-import Common from "../index";
 import AddressModal from "./AddressModal";
 import { useEffect } from "react";
 import api from "../../../utils/api";
@@ -55,8 +54,7 @@ const Addresses = () => {
   }, [token, openLoginModal]);
 
   return (
-    <div className={Styles.root}>
-      <Common />
+    <>
       <div className={Styles.dataDisplay}>
         {addresses.length ? (
           <Box border="1px solid #ddd" borderRadius="4px" margin="0.5rem 1rem">
@@ -99,7 +97,7 @@ const Addresses = () => {
         handleClose={() => setOpenLoginModal(false)}
         style={{ marginTop: "50%" }}
       />
-    </div>
+    </>
   );
 };
 export default Addresses;

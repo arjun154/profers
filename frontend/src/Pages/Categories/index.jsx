@@ -2,11 +2,9 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import Groceries from "./Groceries";
 import CategoryCard from "./CategoryCard";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {

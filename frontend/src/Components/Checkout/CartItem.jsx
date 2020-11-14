@@ -1,7 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../../Redux/cart/actions";
 
 const useStyles = makeStyles((theme) => ({
   flex: {

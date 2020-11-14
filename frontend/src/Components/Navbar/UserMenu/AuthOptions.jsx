@@ -2,7 +2,7 @@ import React from "react";
 import { ListItemIcon, ListItemText } from "@material-ui/core";
 import StyledMenuItem from "../../Common/StyledMenuItem";
 import { Link } from "react-router-dom";
-import Styles from "../../MyOrders/styles.module.css";
+import Styles from "../../Account/styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../Redux/auth/actions";
 
