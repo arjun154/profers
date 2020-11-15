@@ -10,6 +10,7 @@ function Footer() {
         “PROFFR.COM” which is a real estate services business operated by
         “Redstone Consultancy Services Private Limited”.
       </p>
+      <br />
       <hr />
       <div className={styles.div}>
         <div className={styles.footer}>
@@ -66,6 +67,7 @@ function Footer() {
       <hr />
       <div>
         <h2 style={{ marginTop: "1rem" }}>Profers - Online Grocery Shopping</h2>
+        <br />
         <h3>Online grocery store in India</h3>
         <p>
           Order online. All your favourite products from the low price online
@@ -74,6 +76,7 @@ function Footer() {
           Patanjali, Aashirvaad, Pampers, Maggi, Saffola, Fortune, Nestle, Amul,
           Haldiram's and others.
         </p>
+        <br />
         <h3>One stop shop for all your daily needs</h3>
         <p>
           Profers is a low-price online supermarket that allows you to order
@@ -81,6 +84,7 @@ function Footer() {
           wellness, household care, baby care, pet care and meats & seafood and
           gets them delivered to your doorstep.
         </p>
+        <br />
         <h3>For best of prices, deals and offers; order online in cities</h3>
         <p>
           The delivery service is operational in 27+ cities: Agra, Ahmedabad,
