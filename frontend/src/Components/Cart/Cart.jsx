@@ -99,22 +99,19 @@ const Cart = ({ toggleDrawer }) => {
       <Box textAlign="center" padding="0.5rem 0">
         <button className={Styles.btnShop}>
           {count > 0 ? (
-            <Box
-              display="flex"
-              fontWeight="600"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <div>
-                <Link to="/checkout" className={classes.link}>
-                  {" "}
-                  Proceed to Checkout
-                </Link>
-              </div>
-              <Box display="flex" alignItems="center">
-                ₹{subTotal} <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
+            <Link to="/checkout" className={classes.link}>
+              <Box
+                display="flex"
+                fontWeight="600"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <div> Proceed to Checkout</div>
+                <Box display="flex" alignItems="center">
+                  ₹{subTotal} <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
+                </Box>
               </Box>
-            </Box>
+            </Link>
           ) : (
             "Start Shopping"
           )}
