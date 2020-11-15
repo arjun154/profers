@@ -106,7 +106,7 @@ const SearchBar = ({ handleClose, onChange }) => {
 
   const handleSetLocation = (item) => {
     setInput(item.place_name);
-    onChange && onChange(item.place_name);
+    onChange && onChange(item.place_name, item.geometry);
   };
   const handleInputChange = (value) => {
     setInput(value);

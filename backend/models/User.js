@@ -35,6 +35,10 @@ const addressSchema = new Schema(
       },
       coordinates: [Number], // [22.2475, 14.2547]  [longitude, latitude]
     },
+    address: {
+      type: String,
+      required: true
+    },
     addressType: {
       type: String,
       min: 1,

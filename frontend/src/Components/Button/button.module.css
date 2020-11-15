@@ -18,6 +18,7 @@
   align-items: center;
   margin-top: 12px;
   margin-bottom: 12px;
+  cursor: pointer;
 }
 
 .plus_button {

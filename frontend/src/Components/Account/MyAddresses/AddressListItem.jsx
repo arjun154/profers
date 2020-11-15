@@ -51,7 +51,7 @@ export default function AddListItem({ address, setAddresses }) {
           {name} -{" "}
         </Typography>{" "}
         <Typography component="span">
-          {flat} {street}
+          {flat} {street} {address.address}
         </Typography>
         <Box display="inline-flex">
           <Button variant="text">Edit</Button>

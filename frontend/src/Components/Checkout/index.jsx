@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   content: {
     display: "flex",
-    width: "600px",
+    width: "800px",
     margin: "2rem auto",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
 }));
 

@@ -1,13 +1,13 @@
 import React from "react";
 import styles from "./button.module.css";
 
-export default function Button({ onClick }) {
+export default function Button({ onClick, onlyButton, children }) {
   return (
     <div className={styles.root} onMouseDown={onClick}>
       <div className={styles.add_button}>
-        <div>ADD</div>
+        <div>{children ? children : "ADD"}</div>
       </div>
-      <div className={styles.plus_button}>+</div>
+      {onlyButton ? <></> : <div className={styles.plus_button}>+</div>}
     </div>
   );
 }

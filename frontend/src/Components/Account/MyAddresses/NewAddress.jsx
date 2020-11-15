@@ -105,6 +105,7 @@ const useStyles = makeStyles((theme) => ({
 export default function NewAddress({ handleClose }) {
   const classes = useStyles();
   const [address, setAddress] = React.useState("");
+  const [location, setLocation] = React.useState({});
   const [name, setName] = React.useState("");
   const [flatNo, setFlatNo] = React.useState("");
   const [street, setStreet] = React.useState("");
@@ -114,7 +115,7 @@ export default function NewAddress({ handleClose }) {
   const { token } = useSelector((state) => state.auth);
 
   const addAddress = () => {
-    const obj = { address, name, flatNo, street, title, addressType };
+    const obj = { address, name, flatNo, street, title, addressType, location };
     api
       .post("/accounts/addresses", obj, {
         headers: {
@@ -122,7 +123,7 @@ export default function NewAddress({ handleClose }) {
         },
       })
       .then((res) => {
-        // console.log(res.data);
+        handleClose();
       })
       .catch((error) => console.log(error.message));
   };
@@ -142,7 +143,12 @@ export default function NewAddress({ handleClose }) {
         }}
       >
         <div className={classes.label}>Area / Locality</div>
-        <LocationPicker onChange={(value) => setAddress(value)} />
+        <LocationPicker
+          onChange={(value, location) => {
+            setAddress(value);
+            setLocation(location);
+          }}
+        />
       </div>
       <br />
       <div
