@@ -10,7 +10,7 @@ function Home() {
       </div>
       <div className={styles.images}>
         <img
-          src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=50,h=280/layout-engine/2020-10/Diwali20_HFS_mastheads_web_0.jpg"
+          src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=50,h=280/layout-engine/2020-11/Diwali20_mastheads_P2_web1.jpg"
           alt="offer"
         />
       </div>
