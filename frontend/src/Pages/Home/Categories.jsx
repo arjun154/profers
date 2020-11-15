@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../../utils/api";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -32,19 +32,16 @@ export default function Categories() {
   const classes = useStyles();
   const [data, setData] = React.useState([]);
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `http://13.233.134.77:8000/api/V1/categories`,
-    })
+    api
+      .get(`/categories`)
       .then((res) => {
-        console.log(res.data.docs[0].name);
         setData(res.data.docs);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  console.log(data);
+
   if (data.length > 0) {
     return (
       <div className={classes.mainContainer}>

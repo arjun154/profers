@@ -5,8 +5,9 @@
 }
 
 .box {
-  margin: 25px;
+  margin: 30px;
   text-align: justify;
+  font-size: small;
   color: grey;
 }
 

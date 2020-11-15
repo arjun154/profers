@@ -4,22 +4,27 @@ import styles from "./Categories.module.css";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import api from "../../utils/api";
+import Loader from "../../Components/LoadingIndicator";
 
 export default function CategoryCard() {
   const history = useHistory();
-  const { category } = useParams();
+  const { category, subcategory } = useParams();
   const { location } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     api
-      .get(`/products/getByCity/${location.name}/${category}`)
+      .get(
+        subcategory
+          ? `/products/getBy/${location.name}/${category}/${subcategory}`
+          : `/products/getByCity/${location.name}/${category}`
+      )
       .then((res) => {
         setData(res.data.docs);
       })
       .catch((err) => console.log(err));
-  }, [category, location.name]);
-
+  }, [category, location.name, subcategory]);
+  console.log(data);
   return (
     <>
       {data.length > 0 ? (
@@ -49,14 +54,17 @@ export default function CategoryCard() {
                   <div className={styles.text}>
                     <div className={styles.description}>{item.name}</div>
                   </div>
+                  <div style={{ float: "left", color: "#666" }}>
+                    {item.varieties[0].size}
+                  </div>
+                  <br />
+                  <br />
                   <div style={{ float: "left" }}>
                     <div className={styles.price}>
                       ₹
-                      {Math.floor(
-                        item.varieties[0].price -
-                          (item.varieties[0].price * item.varieties[0].sale) /
-                            100
-                      )}
+                      {item.varieties[0].price -
+                        (item.varieties[0].price * item.varieties[0].sale) /
+                          100}
                     </div>
                     <div className={styles.discount}>
                       ₹{item.varieties[0].price}
@@ -69,7 +77,7 @@ export default function CategoryCard() {
           </div>
         </div>
       ) : (
-        <h1>Loading</h1>
+        <Loader />
       )}
     </>
   );

@@ -8,6 +8,7 @@ import { loadLogin } from "./Redux/auth/actions";
 import { loadCart } from "./Redux/cart/actions";
 import Checkout from "./Components/Checkout";
 import { Route } from "react-router-dom";
+import ScrollIntoView from "./Components/ScrollIntoView";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,9 +20,9 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navbar /> */}
-      {/* <Routes /> */}
-      {/* <Footer /> */}
+      <Navbar />
+      <ScrollIntoView><Routes/></ScrollIntoView>
+      <Footer />
       <Route path="/checkout" exact component={Checkout} />
     </div>
   );

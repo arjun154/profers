@@ -72,3 +72,21 @@
   position: absolute;
   z-index: 1000;
 }
+
+.top {
+  padding-left: 1.5rem;
+  text-align: justify;
+}
+.Links {
+  padding: 15px;
+  margin-top: 5%;
+  font-size: medium;
+  color: #333;
+  cursor: pointer;
+}
+
+.head {
+  color: #666;
+  font-size: large;
+  text-transform: capitalize;
+}

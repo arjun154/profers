@@ -1,22 +1,18 @@
 import React from "react";
 import { useEffect } from "react";
-import { makeStyles, Typography } from "@material-ui/core";
 import axios from "axios";
-import { withStyles } from "@material-ui/core/styles";
-import MuiAccordion from "@material-ui/core/Accordion";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import { useParams, useHistory } from "react-router-dom";
+import Styles from "./Categories.module.css";
+import api from "../../utils/api";
 
 export default function Groceries() {
   const { category } = useParams();
-
+  const history = useHistory();
   const [subCateg, setSubCateg] = React.useState([]);
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `http://13.233.134.77:8000/api/V1/categories/${category}`,
-    })
+    api
+      .get(`/categories/${category}`)
       .then((res) => {
         setSubCateg(res.data.docs);
       })
@@ -26,9 +22,18 @@ export default function Groceries() {
   }, [category]);
 
   return (
-    <div>
+    <div className={Styles.top}>
+      <div className={Styles.head}>{category}</div>
       {subCateg.map((item) => (
-        <div key={item._id}>{item.name}</div>
+        <div
+          key={item._id}
+          className={Styles.Links}
+          onClick={() => {
+            history.push(`/${category}/${item.name}`);
+          }}
+        >
+          {item.name}
+        </div>
       ))}
     </div>
   );

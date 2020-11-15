@@ -14,16 +14,7 @@ const Routes = () => {
       <Route path="/account/addresses" exact component={addresses} />
       <Route path="/productCate/:id" exact component={Product} />
       <Route path="/:category" exact component={CategoryPage} />
-      {/* // <Route */}
-      {/* //   path="/:category" */}
-      {/* //   exact */}
-      {/* //   render={(props) => <CategoryPage {...props} />} */}
-      {/* // /> */}
-      {/* <Route
-        path="/:category/:subCategory"
-        exact
-        render={(props) => <CategoryPage {...props} />}
-      /> */}
+      <Route path="/:category/:subcategory" component={CategoryPage} />
     </Switch>
   );
 };

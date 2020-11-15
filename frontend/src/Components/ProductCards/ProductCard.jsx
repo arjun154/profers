@@ -23,7 +23,7 @@ const ProductCard = ({ item }) => {
 
   const variety = item.varieties[0];
   const { price, sale } = variety;
-  const realPriceAfterDiscount = Math.floor(price - (price * sale) / 100);
+  const realPriceAfterDiscount = price - (price * sale) / 100;
 
   return (
     <Card key={item._id} className={styles.root}>

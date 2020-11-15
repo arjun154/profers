@@ -54,6 +54,10 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const handleClearSearch = () => {
+    setQuery("");
+  };
+
   return (
     <div className={classes.root}>
       <InputBase
@@ -68,7 +72,9 @@ const SearchBar = () => {
         onChange={(e) => setQuery(e.target.value)}
         inputProps={{ "aria-label": "search" }}
       />
-      {showSuggestions && <Suggestions query={query} />}
+      {showSuggestions && (
+        <Suggestions query={query} clearSearch={handleClearSearch} />
+      )}
       <div className={classes.searchIcon}>
         <SearchIcon />
       </div>
