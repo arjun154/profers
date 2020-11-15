@@ -9,6 +9,7 @@ import ProductDetails from "../../Components/ProductPage/ProductDetails";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import api from "../../utils/api";
+import Loader from "../../Components/LoadingIndicator";
 
 const useStyles = makeStyles({
   maxContainer: {
@@ -49,7 +50,7 @@ export default function Index() {
 
   return (
     <>
-      {data.length > 0 && (
+      {data.length > 0 ? (
         <Container className={classes.maxContainer}>
           <Grid container spacing={6}>
             <Grid item lg={6} md={6} sm={12}>
@@ -68,6 +69,8 @@ export default function Index() {
             </Grid>
           </Grid>
         </Container>
+      ) : (
+        <Loader />
       )}
     </>
   );

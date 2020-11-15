@@ -3,14 +3,16 @@ import AppBar from "@material-ui/core/AppBar";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import SubCategory from "./SubCategory";
 import CategoryCard from "./CategoryCard";
+import api from "../../utils/api";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    position: "fixed",
+    position: "sticky",
+    zIndex: 1,
     backgroundColor: "white",
-    top: 60,
+    top: 0,
     color: "#333",
     flexDirection: "row",
     alignItems: "center",
@@ -22,26 +24,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   content: {
-    marginTop: "5%",
-    flex: 5,
+    width: "80%",
   },
+
   flex: {
+    width: "20%",
+  },
+
+  box: {
     display: "flex",
-    background: "white",
+    marginTop: "1%",
   },
-  leftFlex: {
-    marginTop: "5%",
-    marginLeft: "5%",
-    flex: 1,
-    // position: "fixed",
-    overflowY: "scroll",
-    overflowX: "hidden",
-    background: "white",
-    "& div": {
-      textAlign: "left",
-      padding: "1% 3%",
-    },
-  },
+
   link: {
     textDecoration: "none",
     color: "#666",
@@ -55,10 +49,8 @@ export default function CategoryPage() {
   const classes = useStyles();
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `http://13.233.134.77:8000/api/V1/categories`,
-    })
+    api
+      .get("/categories")
       .then((res) => {
         setData(res.data.docs);
       })
@@ -107,8 +99,10 @@ export default function CategoryPage() {
             </Link>
           </div>
         </AppBar>
-        <div className={classes.flex}>
-          {/* <Groceries /> */}
+        <div className={classes.box}>
+          <div className={classes.flex}>
+            <SubCategory />
+          </div>
           <div className={classes.content}>
             <img
               src="https://grofers.com/images/banners/banner-edlp-e3d1bbb.jpg"

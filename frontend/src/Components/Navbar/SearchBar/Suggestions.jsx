@@ -6,6 +6,7 @@ import { useState } from "react";
 import api from "../../../utils/api";
 import { debounce } from "../../../utils/debounce";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: "4px",
     padding: theme.spacing(0, 1),
+    zIndex: 1000,
   },
   listItem: {
     height: "40px",
@@ -38,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Suggestions = ({ query }) => {
+const Suggestions = ({ query, clearSearch }) => {
+  const history = useHistory();
   const { location } = useSelector((state) => state.auth);
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
@@ -74,7 +77,10 @@ const Suggestions = ({ query }) => {
     <ul className={classes.root}>
       {list.map((item) => (
         <li
-          onMouseDown={() => console.log(item._id)}
+          onMouseDown={() => {
+            history.push(`/productCate/${item._id}`);
+            clearSearch();
+          }}
           key={item._id}
           className={classes.listItem}
         >
