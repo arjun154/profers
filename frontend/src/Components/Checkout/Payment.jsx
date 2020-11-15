@@ -1,30 +1,19 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import styles from "./styles.module.css";
 import Axios from "axios";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
-  flex: {
-    marginTop: "15px",
-    display: "flex",
-    "& p": {
-      marginLeft: "5%",
-      color: "green",
-      border: "1px solid green",
-    },
-    "& div": {
-      marginLeft: "5%",
-      color: "black",
-      fontWeight: "bold",
-      letterSpacing: "1px",
-    },
-  },
-  two: {
-    border: "1px solid #e96125",
-    borderRadius: "50%",
-    width: "20px",
-  },
+  // flex: {
+  //   marginTop: "15px",
+  //   display: "flex",
+  // },
+  // two: {
+  //   border: "1px solid #e96125",
+  //   borderRadius: "50%",
+  //   width: "20px",
+  // },
 }));
 
 export default function Payment() {
@@ -39,6 +28,7 @@ export default function Payment() {
       return totalPrice - totalSale;
     })
     .reduce((a, c) => a + c, 0);
+
   const paymentHandler = async () => {
     const API_URL = "http://localhost:8000/";
     const orderUrl = `${API_URL}order?total=${subTotal}`;
@@ -72,18 +62,15 @@ export default function Payment() {
     rzp1.open();
   };
   return (
-    <>
-      <div>
-        <div className={classes.flex}>
-          <p className={classes.two}>3</p>
-          <div>Payment</div>
-        </div>
-      </div>
-      <div>
+    <div>
+      <Typography style={{ marginRight: "2.5rem" }}>3</Typography>
+      <div style={{ width: "100%" }}>
+        <Typography style={{ color: "#999" }}>Payment</Typography>
+
         <button className={styles.paymentBtn} onClick={paymentHandler}>
           Pay Now
         </button>
       </div>
-    </>
+    </div>
   );
 }

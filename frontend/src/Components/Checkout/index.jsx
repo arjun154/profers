@@ -5,15 +5,18 @@ import { Redirect } from "react-router-dom";
 import CartItems from "./CartItems";
 import Navbar from "./Navbar";
 import Phone from "./Phone";
-import Proceed from "./Proceed";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    backgroundColor: "#f9f9f9",
+    minHeight: "100vh",
+  },
   content: {
     display: "flex",
-    width: "800px",
+    width: "1000px",
     margin: "2rem auto",
     alignItems: "flex-start",
+    flexWrap: "wrap",
   },
 }));
 
@@ -24,12 +27,12 @@ export default function Checkout() {
   if (!auth) return <Redirect path="/" />;
 
   return (
-    <>
+    <div className={classes.root}>
       <Navbar />
       <div className={classes.content}>
         <Phone />
         <CartItems />
       </div>
-    </>
+    </div>
   );
 }

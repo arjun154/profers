@@ -1,11 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { Card, makeStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     fontSize: 14,
     overflow: "hidden",
+    width: "300px",
   },
   header: {
     display: "flex",
@@ -77,15 +78,17 @@ export default function CartItems() {
   const totalItems = Object.values(items).reduce((a, item) => a + item.qty, 0);
 
   return (
-    <div className={classes.root}>
-      <div className={classes.header}>
-        <div>My cart</div>
-        <div> {totalItems} Items</div>
-      </div>
+    <Card>
+      <div className={classes.root}>
+        <div className={classes.header}>
+          <div>My cart</div>
+          <div> {totalItems} Items</div>
+        </div>
 
-      {Object.values(items).map((item, i) => {
-        return <CartItem key={item._id} item={item} />;
-      })}
-    </div>
+        {Object.values(items).map((item, i) => {
+          return <CartItem key={item._id} item={item} />;
+        })}
+      </div>
+    </Card>
   );
 }

@@ -1,11 +1,9 @@
 import { Card, Divider, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-import AddressCard from "./AddressCard";
-import Payment from "./Payment";
-import AddressModal from "../Account/MyAddresses/AddressModal";
+import React, { useState } from "react";
 import PhoneVerification from "./PhoneVerification";
 import AddressPicker from "./AddressPicker";
+import Payment from "./Payment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +22,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function Phone() {
   const classes = useStyles();
-  const [openLoginModal, setOpenLoginModal] = React.useState(false);
+  const [address, setAddress] = useState(false);
+
   return (
     <Card className={classes.root}>
       <PhoneVerification />
       <Divider />
-      <AddressPicker />
+      <AddressPicker
+        address={address}
+        selectAddress={(item) => setAddress(item)}
+      />
+      <Divider />
+      <Payment />
     </Card>
   );
 }
