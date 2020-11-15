@@ -1,6 +1,13 @@
 import React from "react";
 import LocationPicker from "./Searchbar";
-import { makeStyles } from "@material-ui/core";
+import {
+  FormControlLabel,
+  makeStyles,
+  Radio,
+  RadioGroup,
+} from "@material-ui/core";
+import api from "../../../utils/api";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   addressModal: {
@@ -63,11 +70,12 @@ const useStyles = makeStyles((theme) => ({
     padding: "12px 10px",
   },
   label: {
-    color: "#666",
-    fontSize: "12px",
-    fontFamily: "Celias,Helvetica",
-    "& label": {
-      marginRight: "10%",
+    display: "flex",
+    flexDirection: "row",
+    "& label span": {
+      color: "#666",
+      fontFamily: "Celias,Helvetica",
+      fontSize: "12px",
     },
   },
   continueBtn: {
@@ -94,12 +102,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NewAddress() {
+export default function NewAddress({ handleClose }) {
   const classes = useStyles();
+  const [address, setAddress] = React.useState("");
   const [name, setName] = React.useState("");
   const [flatNo, setFlatNo] = React.useState("");
   const [street, setStreet] = React.useState("");
   const [title, setTitle] = React.useState("");
+  const [addressType, setAddressType] = React.useState("");
+
+  const { token } = useSelector((state) => state.auth);
+
+  const addAddress = () => {
+    const obj = { address, name, flatNo, street, title, addressType };
+    api
+      .post("/accounts/addresses", obj, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res.data);
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   return (
     <div className={classes.addressModal}>
@@ -116,7 +142,7 @@ export default function NewAddress() {
         }}
       >
         <div className={classes.label}>Area / Locality</div>
-        <LocationPicker />
+        <LocationPicker onChange={(value) => setAddress(value)} />
       </div>
       <br />
       <div
@@ -163,20 +189,36 @@ export default function NewAddress() {
           className={classes.input}
           required
         />
-        <div className={classes.label}>
+        {/* <div className={classes.label}>
+          
           <label>
-            <input type="radio" required></input> Home
+            <input type="radio" name="addressType" required></input> Home
           </label>
           <label>
-            <input type="radio" required></input> Office
+            <input type="radio" name="addressType" required></input> Office
           </label>
           <label>
-            <input type="radio" required></input> Other
+            <input type="radio" name="addressType" required></input> Other
           </label>
-        </div>
+        </div> */}
+        <RadioGroup
+          className={classes.label}
+          aria-label="gender"
+          name="gender1"
+          value={addressType}
+          onChange={(e) => setAddressType(e.target.value)}
+        >
+          <FormControlLabel value="H" control={<Radio />} label="Home" />
+          <FormControlLabel value="O" control={<Radio />} label="Office" />
+          <FormControlLabel value="T" control={<Radio />} label="Other" />
+        </RadioGroup>
         <div>
-          <button className={classes.continueBtn}>Continue</button>
-          <button className={classes.cancelBtn}>Cancel</button>
+          <button className={classes.continueBtn} onClick={addAddress}>
+            Continue
+          </button>
+          <button onClick={handleClose} className={classes.cancelBtn}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>

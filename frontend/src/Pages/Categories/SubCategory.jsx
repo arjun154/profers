@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import Styles from "./Categories.module.css";
 import api from "../../utils/api";

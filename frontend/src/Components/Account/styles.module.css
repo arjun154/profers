@@ -4,6 +4,7 @@
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 2px 2px 0 hsla(0, 0%, 78%, 0.5);
+  min-height: 600px;
 }
 .leftTabs {
   flex: 1;

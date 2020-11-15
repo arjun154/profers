@@ -3,7 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import SubCategory from "./SubCategory";
 import CategoryCard from "./CategoryCard";
 import api from "../../utils/api";

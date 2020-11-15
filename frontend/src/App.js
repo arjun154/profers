@@ -21,7 +21,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <ScrollIntoView><Routes/></ScrollIntoView>
+      <ScrollIntoView>
+        <Routes />
+      </ScrollIntoView>
       <Footer />
       <Route path="/checkout" exact component={Checkout} />
     </div>

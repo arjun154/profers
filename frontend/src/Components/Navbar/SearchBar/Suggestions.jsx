@@ -47,24 +47,26 @@ const Suggestions = ({ query, clearSearch }) => {
   const [loading, setLoading] = useState(false);
   const [list, setList] = useState([]);
 
-  const search = async (query) => {
-    try {
-      const { data } = await api.get("/products", {
-        params: {
-          query,
-          location,
-          limit: 10,
-        },
-      });
-      setList(data.docs);
-      setLoading(false);
-    } catch (error) {
-      console.log(error.message);
-      setLoading(false);
-    }
-  };
+  const searchDebounce = useMemo(() => {
+    const search = async (query) => {
+      try {
+        const { data } = await api.get("/products", {
+          params: {
+            query,
+            location,
+            limit: 10,
+          },
+        });
+        setList(data.docs);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+        setLoading(false);
+      }
+    };
 
-  const searchDebounce = useMemo(() => debounce(search, 1000), []);
+    return debounce(search, 1000);
+  }, [location]);
 
   useEffect(() => {
     setLoading(true);
