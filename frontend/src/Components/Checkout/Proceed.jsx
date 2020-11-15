@@ -2,7 +2,7 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import CartItem from "./CartItem";
+import CartItems from "./CartItems";
 import Phone from "./Phone";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "8%",
   },
 }));
+
 export default function Proceed() {
   const classes = useStyles();
   return (
@@ -37,8 +38,8 @@ export default function Proceed() {
           </Paper>
         </Grid>
         <Grid item xs={3} className={classes.marginRight}>
-          <Paper className={classes.paper}>
-            <CartItem />
+          <Paper className={classes.paper} style={{ padding: 0 }}>
+            <CartItems />
           </Paper>
         </Grid>
       </Grid>

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { loadLogin } from "./Redux/auth/actions";
 import { loadCart } from "./Redux/cart/actions";
 import Checkout from "./Components/Checkout";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,10 +19,15 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      <Routes />
-      <Footer />
-      <Route path="/checkout" exact component={Checkout} />
+      <Switch>
+        <Route path="/checkout" exact component={Checkout} />
+
+        <Route>
+          <Navbar />
+          <Routes />
+          <Footer />
+        </Route>
+      </Switch>
     </div>
   );
 }
