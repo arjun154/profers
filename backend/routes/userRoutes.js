@@ -17,8 +17,8 @@ routes.delete("/addresses/:id", authMiddleware, deleteAddress);
 routes.patch("/addresses/:id", authMiddleware, updateAddress);
 
 //order routes
-routes.get('/orders', authMiddleware, getAllOrders)
-routes.post('/orders', authMiddleware, order)
+routes.get('/getOrders', authMiddleware, getAllOrders)
+routes.get('/order', authMiddleware, order)
 
 // user login/register routes
 routes.get("/:phone", requestOTP);

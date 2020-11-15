@@ -4,22 +4,9 @@ import styles from "./styles.module.css";
 import Axios from "axios";
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  // flex: {
-  //   marginTop: "15px",
-  //   display: "flex",
-  // },
-  // two: {
-  //   border: "1px solid #e96125",
-  //   borderRadius: "50%",
-  //   width: "20px",
-  // },
-}));
-
-export default function Payment() {
-  const classes = useStyles();
-
+export default function Payment({ address }) {
   const { items } = useSelector((state) => state.cart);
+  const { token } = useSelector((state) => state.auth);
 
   const subTotal = Object.keys(items)
     .map((key) => {
@@ -30,10 +17,16 @@ export default function Payment() {
     .reduce((a, c) => a + c, 0);
 
   const paymentHandler = async () => {
-    const API_URL = "http://localhost:8000/";
-    const orderUrl = `${API_URL}order?total=${subTotal}`;
-    const response = await Axios.get(orderUrl);
+    const API_URL = "http://localhost:8000/api/V1/accounts";
+    const orderUrl = `${API_URL}/order?price=${subTotal}`;
+
+    const response = await Axios.get(orderUrl, {
+      headers: { authorization: `Bearer ${token}` },
+      data: { items, address },
+    });
     const { data } = response;
+
+    console.log(data);
     const options = {
       name: "Profers RazorPay",
       description: "Integration of Razorpay",

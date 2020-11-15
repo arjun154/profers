@@ -63,6 +63,16 @@ const orderSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isConfirmed: {
+    type: Boolean,
+    default: false
+  },
+  razorPayId: {
+    type: String,
+  },
+  razorPayReceipt: {
+    type: String,
+  },
   address: addressSchema,
   slot: {
     type: Date,

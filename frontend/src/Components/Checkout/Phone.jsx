@@ -33,7 +33,7 @@ export default function Phone() {
         selectAddress={(item) => setAddress(item)}
       />
       <Divider />
-      <Payment />
+      <Payment address={address} />
     </Card>
   );
 }
