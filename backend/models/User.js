@@ -45,6 +45,27 @@ const addressSchema = new Schema(
   { timestamps: true }
 );
 
+const orderSchema = new Schema({
+  items: [],
+  totalPrice: {
+    type: Number,
+    required: true,
+  },
+  delivered: {
+    type: Boolean,
+    default: false
+  },
+  isCancelled: {
+    type: Boolean,
+    default: false
+  },
+  address: addressSchema,
+  slot: {
+    type: Date,
+    required: true
+  }
+}, { timestamps: true })
+
 const userSchema = new Schema(
   {
     phone: {
@@ -54,6 +75,7 @@ const userSchema = new Schema(
       required: true,
     },
     addresses: [addressSchema],
+    orders: [orderSchema]
   },
   { timestamps: true }
 );
