@@ -108,8 +108,8 @@ const captureOrder = async (req, res) => {
         await User.updateOne({ _id: user._id, "orders.razorPayId": order_id }, { $set: { "orders.$.isConfirmed": true } })
 
         res.json(data)
-    } catch (err) {
-        res.status(500).json({ message: 'Something went wrong!' })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
     }
 }
 
