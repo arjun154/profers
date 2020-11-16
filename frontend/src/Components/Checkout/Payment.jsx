@@ -30,8 +30,6 @@ export default function Payment({ address, disabled }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  console.log(disabled);
-
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
