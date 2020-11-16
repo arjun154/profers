@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     fontSize: 14,
     overflow: "hidden",
-    width: "300px",
+    width: "350px",
   },
   header: {
     display: "flex",
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.5,
     display: "flex",
     alignItems: "center",
-    padding: "1rem",
+    padding: "0.3rem 1rem",
     "& div": {
       flex: 1,
     },
@@ -67,7 +67,9 @@ const CartItem = ({ item, index }) => {
         {sale > 0 && <div className={classes.saleTag}>{sale}% OFF</div>}
         <p>{name}</p>
         <p style={{ color: "#999" }}>{size}</p>
-        <div style={{ fontWeight: 600 }}>₹{priceAfterSale}</div>
+        <div style={{ fontWeight: 600 }}>
+          ₹{Math.round(price * (1 - sale / 100))}
+        </div>
       </div>
     </div>
   );

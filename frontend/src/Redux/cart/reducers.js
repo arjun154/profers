@@ -1,4 +1,4 @@
-import { ADD_TO_CART, LOAD_CART, REMOVE_FROM_CART } from "./actionTypes";
+import { ADD_TO_CART, CLEAR_CART, LOAD_CART, REMOVE_FROM_CART } from "./actionTypes";
 
 const initState = {
   items: {},
@@ -17,7 +17,7 @@ const reducers = (state = initState, { type, payload }) => {
         item.qty = 1;
         items[id] = item;
       }
-      const newState = { ...state, items: {...items}, count: count + 1 };
+      const newState = { ...state, items: { ...items }, count: count + 1 };
       localStorage.setItem("cart", JSON.stringify(newState))
       return newState
     }
@@ -29,15 +29,20 @@ const reducers = (state = initState, { type, payload }) => {
       if (items[id].qty === 0) {
         delete items[id];
       }
-      const newState = { ...state, items: {...items}, count: count - 1 };
+      const newState = { ...state, items: { ...items }, count: count - 1 };
       localStorage.setItem("cart", JSON.stringify(newState))
       return newState
     }
 
     case LOAD_CART: {
-      const cart = JSON.parse(localStorage.getItem("cart")) || {items: {}, count: 0}
-      return {...cart}
+      const cart = JSON.parse(localStorage.getItem("cart")) || { items: {}, count: 0 }
+      return { ...cart }
     }
+
+    case CLEAR_CART: {
+      return { ...state, items: {}, count: 0 }
+    }
+
     default:
       return state;
   }
