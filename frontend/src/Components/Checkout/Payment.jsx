@@ -22,12 +22,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Payment({ address }) {
+export default function Payment({ address, disabled }) {
   const { items } = useSelector((state) => state.cart);
   const { token } = useSelector((state) => state.auth);
   const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  console.log(disabled);
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -95,7 +97,11 @@ export default function Payment({ address }) {
       <div style={{ width: "100%" }}>
         <Typography style={{ color: "#999" }}>Payment</Typography>
 
-        <button className={styles.paymentBtn} onClick={paymentHandler}>
+        <button
+          className={styles.paymentBtn}
+          disabled={disabled}
+          onClick={paymentHandler}
+        >
           Pay Now
         </button>
       </div>
