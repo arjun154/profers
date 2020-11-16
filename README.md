@@ -19,7 +19,7 @@
 
 ## Landing Page
 
-<img src="landingpage.png" alt="landing page">
+<img src="https://github.com/arjun154/profers/blob/main/frontend/public/landingpage.png?raw=true" />
 
 ## How To Use
 
