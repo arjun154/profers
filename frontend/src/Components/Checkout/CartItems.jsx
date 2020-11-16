@@ -53,6 +53,8 @@ const CartItem = ({ item, index }) => {
 
   const { sale, size, price } = varieties[0];
 
+  const priceAfterSale = price - (price * sale) / 100;
+
   return (
     <div className={classes.item}>
       <p>{qty}</p>
@@ -65,7 +67,7 @@ const CartItem = ({ item, index }) => {
         {sale > 0 && <div className={classes.saleTag}>{sale}% OFF</div>}
         <p>{name}</p>
         <p style={{ color: "#999" }}>{size}</p>
-        <div style={{ fontWeight: 600 }}>₹{price}</div>
+        <div style={{ fontWeight: 600 }}>₹{priceAfterSale}</div>
       </div>
     </div>
   );

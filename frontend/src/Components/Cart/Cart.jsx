@@ -108,7 +108,8 @@ const Cart = ({ toggleDrawer }) => {
               >
                 <div> Proceed to Checkout</div>
                 <Box display="flex" alignItems="center">
-                  ₹{subTotal} <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
+                  ₹{subTotal.toFixed(2)}{" "}
+                  <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
                 </Box>
               </Box>
             </Link>

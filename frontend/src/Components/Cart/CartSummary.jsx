@@ -35,14 +35,14 @@ export default function CartSummary({ subTotal, totalSaved, count }) {
           <p>Delivery Charges</p>
         </div>
         <div>
-          <p>₹{subTotal}</p>
+          <p>₹{subTotal.toFixed(2)}</p>
           <p style={{ color: "green" }}>Free</p>
         </div>
       </div>
       {totalSaved > 0 && (
         <div>
           <p>Your total savings</p>
-          <p style={{ color: "#f34343" }}> ₹{totalSaved}</p>
+          <p style={{ color: "#f34343" }}> ₹{totalSaved.toFixed(2)}</p>
         </div>
       )}
     </div>

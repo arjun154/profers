@@ -18,7 +18,7 @@ export default function Payment({ address }) {
 
   const paymentHandler = async () => {
     const API_URL = "http://localhost:8000/api/V1/accounts";
-    const orderUrl = `${API_URL}/order?price=${subTotal}`;
+    const orderUrl = `${API_URL}/order?price=${Math.round(subTotal) * 100}`;
 
     const response = await Axios.get(orderUrl, {
       headers: { authorization: `Bearer ${token}` },
