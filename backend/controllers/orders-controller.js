@@ -95,14 +95,18 @@ const order = async (req, res) => {
 
 const captureOrder = async (req, res) => {
     const { paymentId } = req.params
+    const { total } = req.body
     const { user } = req
 
     const url = `https://${process.env.RAZOR_PAY_KEY_ID}:${process.env.RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${paymentId}/capture`
 
     try {
-        const orderObj = await user.findOne({ orders: { razorPayId: paymentId } })
-        console.log(orderObj)
-        const { data } = await Axios.post(url, { amount: 10 * 100, currency: 'INR' })
+        const { data } = await Axios.post(url, { amount: Number(total), currency: 'INR' })
+
+        const { order_id } = data
+
+        await User.updateOne({ _id: user._id, "orders.razorPayId": order_id }, { $set: { "orders.$.isConfirmed": true } })
+
         res.json(data)
     } catch (err) {
         res.status(500).json({ message: 'Something went wrong!' })

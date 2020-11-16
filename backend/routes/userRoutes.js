@@ -18,7 +18,7 @@ routes.patch("/addresses/:id", authMiddleware, updateAddress);
 
 //order routes
 routes.get('/getOrders', authMiddleware, getAllOrders)
-routes.post('/order/caputer/:paymentId', authMiddleware, captureOrder)
+routes.post('/order/capture/:paymentId', authMiddleware, captureOrder)
 routes.post('/order', authMiddleware, order)
 
 // user login/register routes
