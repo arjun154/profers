@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import CartListItem from "./CartListItem";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CartSummary from "./CartSummary";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart = ({ toggleDrawer }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const { count, items } = useSelector((state) => state.cart);
 
@@ -97,22 +98,23 @@ const Cart = ({ toggleDrawer }) => {
       )}
 
       <Box textAlign="center" padding="0.5rem 0">
-        <button className={Styles.btnShop}>
+        <button
+          onClick={() => history.push("/checkout")}
+          className={Styles.btnShop}
+        >
           {count > 0 ? (
-            <Link to="/checkout" className={classes.link}>
-              <Box
-                display="flex"
-                fontWeight="600"
-                alignItems="center"
-                justifyContent="space-between"
-              >
-                <div> Proceed to Checkout</div>
-                <Box display="flex" alignItems="center">
-                  ₹{subTotal.toFixed(2)}{" "}
-                  <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
-                </Box>
+            <Box
+              display="flex"
+              fontWeight="600"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <div> Proceed to Checkout</div>
+              <Box display="flex" alignItems="center">
+                ₹{subTotal.toFixed(2)}{" "}
+                <ArrowForwardIosIcon style={{ height: 14 }} />{" "}
               </Box>
-            </Link>
+            </Box>
           ) : (
             "Start Shopping"
           )}
