@@ -66,6 +66,10 @@ const getBySubCategory = async (req, res) => {
 
 const getByCity = async (req, res) => {
   const { page, sortBy, sortOrder, limit, query } = req.queryObject;
+
+
+  console.log(sortBy, sortOrder)
+
   const { city, category } = req.params;
 
   try {

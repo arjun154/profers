@@ -17,23 +17,32 @@ export default function CategoryCard() {
   const { category, subcategory } = useParams();
   const { location } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
-  const [sortValue, setSortValue] = useState("Price - low to high");
+  const [sortBy, setSortBy] = useState("_id");
+  const [sortOrder, setSortOrder] = useState("");
 
   useEffect(() => {
     api
       .get(
         subcategory
           ? `/products/getBy/${location.name}/${category}/${subcategory}`
-          : `/products/getByCity/${location.name}/${category}`
+          : `/products/getByCity/${location.name}/${category}`,
+        {
+          params: {
+            sortBy,
+            sortOrder,
+          },
+        }
       )
       .then((res) => {
         setData(res.data.docs);
       })
       .catch((err) => console.log(err));
-  }, [category, location.name, subcategory]);
+  }, [category, location.name, subcategory, sortBy, sortOrder]);
 
   const handleChange = (event) => {
-    setSortValue(event.target.value);
+    const [a, b] = event.target.value.split("&");
+    setSortBy(a);
+    setSortOrder(b);
   };
 
   return (
@@ -43,15 +52,20 @@ export default function CategoryCard() {
           <div className={styles.box}>
             <FormControl variant="outlined">
               <InputLabel>Sort By</InputLabel>
-              <Select value={sortValue} onChange={handleChange} label="Sort By">
-                <MenuItem value="Name(a to z)">Name(a to z)</MenuItem>
-                <MenuItem value="Price - low to high">
+              <Select
+                value={`${sortBy}&${sortOrder}`}
+                onChange={handleChange}
+                label="Sort By"
+              >
+                <MenuItem value="_id&">Relevance</MenuItem>
+                <MenuItem value="name&asc">Name(a to z)</MenuItem>
+                <MenuItem value="varieties.price&asc">
                   Price - low to high
                 </MenuItem>
-                <MenuItem value="Price - high to low">
+                <MenuItem value="varieties.price&desc">
                   Price - high to low
                 </MenuItem>
-                <MenuItem value="Discount - high to low">
+                <MenuItem value="varieties.sale&desc">
                   Discount - high to low
                 </MenuItem>
               </Select>
