@@ -20,10 +20,13 @@ export default function Payment({ address }) {
     const API_URL = "http://localhost:8000/api/V1/accounts";
     const orderUrl = `${API_URL}/order?price=${subTotal}`;
 
-    const response = await Axios.get(orderUrl, {
-      headers: { authorization: `Bearer ${token}` },
-      data: { items, address },
-    });
+    const response = await Axios.post(
+      orderUrl,
+      { items, address },
+      {
+        headers: { authorization: `Bearer ${token}` },
+      }
+    );
     const { data } = response;
 
     console.log(data);
@@ -34,7 +37,7 @@ export default function Payment({ address }) {
       handler: async (response) => {
         try {
           const paymentId = response.razorpay_payment_id;
-          const url = `${API_URL}capture/${paymentId}`;
+          const url = `${API_URL}/order/capture/${paymentId}`;
           const captureResponse = await Axios.post(url, {
             total: subTotal,
           });

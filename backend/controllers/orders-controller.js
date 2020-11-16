@@ -18,6 +18,7 @@ const getAllOrders = async (req, res) => {
 
     try {
         const orders = await user.orders
+        orders.sort((a, b) => b.createdAt - a.createdAt)
         res.json(orders)
     } catch (error) {
         res.status(400).json({ message: error.message })
@@ -39,6 +40,7 @@ const validateOrder = data => {
 const order = async (req, res) => {
     const { user } = req
     let { price = 1000 } = req.query
+    price = Number(price)
     /* 
 
     headers
@@ -65,10 +67,11 @@ const order = async (req, res) => {
 
 
     try {
-        // if (!items) throw new Error('Items not found!')
-        // if (!address || typeof address != 'object') throw new Error('Address not found or not valid!')
+        if (!items) throw new Error('Items not found!')
+        items = Object.values(items)
+        if (!address || typeof address != 'object') throw new Error('Address not found or not valid!')
 
-        slot = Date.parse(slot || "2020-11-16T16:51:28.190Z")
+        slot = new Date(slot || "2020-11-16T16:51:28.190Z")
         if (!slot) throw new Error("slot not valid!")
 
         // const totalPrice = items.reduce((a, c) => a + (c.varieties[0].price * ((1 - c.varieties[0].sale) / 100)) * c.qty, 0)
@@ -82,8 +85,8 @@ const order = async (req, res) => {
 
         const orderRz = await instance.orders.create(razorPayOptions)
         // finally everyting ok so add it to db.
-        const d = await user.updateOne({ $push: { $orders: { totalPrice: price, razorPayId: orderRz.id, razorPayReceipt: orderRz.receipt, items, address } } })
-        console.log(d)
+        const data = { totalPrice: price, razorPayId: orderRz.id, razorPayReceipt: orderRz.receipt, items, address, slot }
+        const d = await user.updateOne({ $push: { orders: data } }, { upsert: true })
         res.json(orderRz)
     } catch (error) {
         res.status(400).json({ message: error.message })
@@ -91,9 +94,14 @@ const order = async (req, res) => {
 }
 
 const captureOrder = async (req, res) => {
-    const url = `https://${process.env.RAZOR_PAY_KEY_ID}:${process.env.RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`
+    const { paymentId } = req.params
+    const { user } = req
+
+    const url = `https://${process.env.RAZOR_PAY_KEY_ID}:${process.env.RAZOR_PAY_KEY_SECRET}@api.razorpay.com/v1/payments/${paymentId}/capture`
 
     try {
+        const orderObj = await user.findOne({ orders: { razorPayId: paymentId } })
+        console.log(orderObj)
         const { data } = await Axios.post(url, { amount: 10 * 100, currency: 'INR' })
         res.json(data)
     } catch (err) {
@@ -101,4 +109,4 @@ const captureOrder = async (req, res) => {
     }
 }
 
-module.exports = { getAllOrders, order }
+module.exports = { getAllOrders, order, captureOrder }
