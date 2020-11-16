@@ -24,6 +24,7 @@ export default function Checkout() {
   const classes = useStyles();
 
   const { auth } = useSelector((state) => state.auth);
+  if (!auth) alert("Please login before!");
   if (!auth) return <Redirect path="/" />;
 
   return (
