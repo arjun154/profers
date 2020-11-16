@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = ({ handleClose }) => {
   const classes = useStyles();
-  const [phoneNumber, setPhoneNumber] = useState("8279880948");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
 
   const dispatch = useDispatch();
