@@ -3,68 +3,25 @@ const City = require("../models/City")
 const Item = require("../models/Item");
 const mongoose = require("mongoose");
 
-const getByCategory = async (req, res) => {  
+const getByCategory = async (req, res) => {
   const { query } = req.queryObject;
-  
+
   try {
-    const categoryId = await Category.findOne({ name: query });    
+    const categoryId = await Category.findOne({ name: query });
     const category_id = (await categoryId)._id
- 
-    const Items = await Item.find({category: mongoose.Types.ObjectId(`${category_id}`)})
-    
+
+    const Items = await Item.find({ category: mongoose.Types.ObjectId(`${category_id}`) })
+
     res.json(Items);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
-// const getItemsBySubCategory = async (req, res) => {
-//   const { location, category, subCategory } = req.params;
-//   var subCategoryId = "";
-  
-//   try {
-//     const categoryId = await Category.find({ name: category });    
-//     const category_id = categoryId[0]._id;
-//     categoryId[0].subCategories.map((item) => {
-//       if (item.name === subCategory) {
-//           subCategoryId = item._id
-//       }
-//     });
-//     const myAggregate = Item.aggregate([
-//       { $match: { category: mongoose.Types.ObjectId(`${category_id}`) }, subCategory: mongoose.Types.ObjectId(`${subCategoryId}`) },
-//       {
-//         $project: {
-//           varieties: {
-//             $filter: {
-//               input: "$varieties",
-//               as: "variety",
-//               cond: { $eq: ["$$variety.city", mongoose.Types.ObjectId(location)] }
-//             }
-//           },
-//           name: 1,
-//           images: 1
-//         }
-//       }
-//     ]);
-
-//     const Items = await Item.aggregatePaginate(myAggregate, {
-//       page,
-//       limit,
-//       sort: { [sortBy]: sortOrder },
-//     });
-
-//     // const Items = await Item.find({ $and: [{ category: mongoose.Types.ObjectId(`${category_id}`) }, { subCategory: mongoose.Types.ObjectId(`${subCategoryId}`) }] } )
-    
-//     res.json(Items);
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-// };
-
 const getBySubCategory = async (req, res) => {
   const { page, sortBy, sortOrder, limit, query } = req.queryObject;
   const { city, category, subcategory } = req.params;
-  console.log(city, category, subcategory)
+
   try {
     const cityId = await City.findOne({ name: city });
     const categoryId = await Category.findOne({ name: category });
@@ -73,13 +30,13 @@ const getBySubCategory = async (req, res) => {
 
     categoryId.subCategories.map((item) => {
       if (item.name === subcategory) {
-          subCategoryId = item._id
+        subCategoryId = item._id
       }
     });
 
     const myAggregate = Item.aggregate([
       { $match: { category: mongoose.Types.ObjectId(`${category_id}`) } },
-      {$match: {subCategory: mongoose.Types.ObjectId(`${subCategoryId}`)}},
+      { $match: { subCategory: mongoose.Types.ObjectId(`${subCategoryId}`) } },
       {
         $project: {
           varieties: {
@@ -100,23 +57,24 @@ const getBySubCategory = async (req, res) => {
       limit,
       sort: { [sortBy]: sortOrder },
     });
-   
+
     res.json(items);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 }
+
 const getByCity = async (req, res) => {
   const { page, sortBy, sortOrder, limit, query } = req.queryObject;
   const { city, category } = req.params;
-  
+
   try {
     const cityId = await City.findOne({ name: city });
     const categoryId = await Category.findOne({ name: category });
     const category_id = (await categoryId)._id
 
     const myAggregate = Item.aggregate([
-      {$match: {category: mongoose.Types.ObjectId(`${category_id}`)}},
+      { $match: { category: mongoose.Types.ObjectId(`${category_id}`) } },
       {
         $project: {
           varieties: {
@@ -137,10 +95,11 @@ const getByCity = async (req, res) => {
       limit,
       sort: { [sortBy]: sortOrder },
     });
-   
+
     res.json(items);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 }
+
 module.exports = { getByCategory, getBySubCategory, getByCity };

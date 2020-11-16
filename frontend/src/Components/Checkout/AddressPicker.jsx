@@ -15,11 +15,12 @@ const useStyles = makeStyles((theme) => ({
     width: "400px",
   },
   addressBox: {
-    minWidth: "200px",
+    minWidth: "150px",
     border: "1px solid #ccc",
     padding: "1rem",
     borderRadius: "4px",
     margin: "0 0.5rem",
+    maxWidth: 230,
   },
   changeAddressBtn: {
     border: "1px solid rgb(233, 97, 37)",

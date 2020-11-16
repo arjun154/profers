@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../../Redux/cart/actions";
+import SmallRoundButton from "../Button/SmallRoundButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,13 +92,16 @@ export default function CartListItem({ item, selectedId }) {
         </p>
         <div className={classes.options}>
           <div>
-            <button onClick={() => dispatch(removeFromCart(item._id))}>
-              -
-            </button>
+            <SmallRoundButton
+              label="-"
+              onClick={() => dispatch(removeFromCart(item._id))}
+            />
             <p>{qty}</p>
-            <button onClick={() => dispatch(addToCart(item._id, item))}>
-              +
-            </button>
+            <SmallRoundButton
+              onClick={() => dispatch(addToCart(item._id, item))}
+              label="+"
+            />
+
             <p>x</p>
             <p>₹{realPriceAfterDiscount}</p>
             {sale > 0 && (

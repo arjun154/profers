@@ -195,18 +195,6 @@ export default function NewAddress({ handleClose }) {
           className={classes.input}
           required
         />
-        {/* <div className={classes.label}>
-          
-          <label>
-            <input type="radio" name="addressType" required></input> Home
-          </label>
-          <label>
-            <input type="radio" name="addressType" required></input> Office
-          </label>
-          <label>
-            <input type="radio" name="addressType" required></input> Other
-          </label>
-        </div> */}
         <RadioGroup
           className={classes.label}
           aria-label="gender"
