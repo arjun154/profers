@@ -40,6 +40,7 @@ const reducers = (state = initState, { type, payload }) => {
     }
 
     case CLEAR_CART: {
+      localStorage.removeItem('cart')
       return { ...state, items: {}, count: 0 }
     }
 
