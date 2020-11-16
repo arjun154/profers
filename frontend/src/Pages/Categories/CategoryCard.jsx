@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import {
+  Box,
   Card,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
+  Typography,
 } from "@material-ui/core";
 import styles from "./Categories.module.css";
 import { useParams, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../utils/api";
 import Loader from "../../Components/LoadingIndicator";
+import { addToCart, removeFromCart } from "../../Redux/cart/actions";
+import SmallRoundButton from "../../Components/Button/SmallRoundButton";
 
 export default function CategoryCard() {
   const history = useHistory();
@@ -19,6 +23,8 @@ export default function CategoryCard() {
   const [data, setData] = useState([]);
   const [sortBy, setSortBy] = useState("_id");
   const [sortOrder, setSortOrder] = useState("");
+  const dispatch = useDispatch();
+  const { items: cartItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
     api
@@ -73,13 +79,11 @@ export default function CategoryCard() {
           </div>
           <div className={styles.products}>
             {data.map((item) => (
-              <Card
-                key={item._id}
-                className={styles.root}
-                variant="outlined"
-                onClick={() => history.push(`/productCate/${item._id}`)}
-              >
-                <div style={{ position: "relative" }}>
+              <Card key={item._id} className={styles.root} variant="outlined">
+                <div
+                  style={{ position: "relative" }}
+                  onClick={() => history.push(`/productCate/${item._id}`)}
+                >
                   {item.varieties[0].sale > 0 && (
                     <div className={styles.saleTag}>
                       {item.varieties[0].sale}% OFF
@@ -114,7 +118,30 @@ export default function CategoryCard() {
                     </div>
                   </div>
                 </div>
-                <button className={styles.button}>Add to Cart</button>
+                {cartItems[item._id] ? (
+                  <Box display="flex" justifyContent="flex-end">
+                    <SmallRoundButton
+                      label="-"
+                      onClick={() => dispatch(removeFromCart(item._id))}
+                    />
+                    <Typography color="textSecondary">
+                      {cartItems[item._id].qty}
+                    </Typography>
+                    <SmallRoundButton
+                      label="+"
+                      onClick={() => dispatch(addToCart(item._id, item))}
+                    />
+                  </Box>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      dispatch(addToCart(item._id, item));
+                    }}
+                    className={styles.button}
+                  >
+                    Add to Cart
+                  </button>
+                )}
               </Card>
             ))}
           </div>
