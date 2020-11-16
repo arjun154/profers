@@ -67,7 +67,7 @@ export default function Index() {
                       <div>
                         Super Store - East of Kailash.
                         <span style={{ float: "right" }}>
-                          ₹{order.totalPrice}
+                          ₹{order.totalPrice / 100}
                         </span>
                       </div>
                       <div className={Styles.font}>

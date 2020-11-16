@@ -3,10 +3,14 @@ import Styles from "./styles.module.css";
 import { Link, Switch, Route } from "react-router-dom";
 import MyAddresses from "./MyAddresses";
 import MyOrders from "./MyOrders";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../Redux/auth/actions";
+import { useHistory } from "react-router-dom";
 
 const OrdersPage = () => {
   const { phoneNumber } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <>
@@ -43,7 +47,10 @@ const OrdersPage = () => {
               ></i>{" "}
               My Wallet
             </div>
-            <div className={Styles.tabPanel}>
+            <div
+              className={Styles.tabPanel}
+              onClick={() => `${(dispatch(logout()), history.push("/"))}}`}
+            >
               {" "}
               <i className="fal fa-user"></i> Logout
             </div>
