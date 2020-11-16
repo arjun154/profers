@@ -8,7 +8,7 @@ import AddListItem from "./AddressListItem";
 import { Box, makeStyles, Typography } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   addButton: {
     width: "100%",
     color: "#e96125",

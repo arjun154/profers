@@ -88,7 +88,7 @@ export default function AddressPicker({ address, selectAddress }) {
       })
       .then(({ data }) => setAddresses(data))
       .catch((error) => console.log(error.message));
-  }, [addAddressModal]);
+  }, [addAddressModal, token]);
 
   return (
     <>
