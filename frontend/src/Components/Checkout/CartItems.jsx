@@ -53,6 +53,8 @@ const CartItem = ({ item, index }) => {
 
   const { sale, size, price } = varieties[0];
 
+  const priceAfterSale = price - (price * sale) / 100;
+
   return (
     <div className={classes.item}>
       <p>{qty}</p>

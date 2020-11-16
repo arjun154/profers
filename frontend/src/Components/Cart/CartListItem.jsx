@@ -106,7 +106,7 @@ export default function CartListItem({ item, selectedId }) {
               </p>
             )}
           </div>
-           <div>₹{realPriceAfterDiscount * qty}</div>
+           <div>₹{(realPriceAfterDiscount * qty).toFixed(2)}</div>
         </div>
       </div>
     </div>

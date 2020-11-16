@@ -1,0 +1,13 @@
+.dataDisplay {
+  flex: 5;
+  padding-top: 6%;
+  padding-bottom: 14%;
+}
+
+.top {
+  background-color: #666;
+  height: 50px;
+  font-size: medium;
+  text-align: left;
+  margin: 0px 25px 0px 25px;
+}

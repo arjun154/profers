@@ -43,7 +43,7 @@ const Icon = ({ onClick, className, count }) => {
         className="far fa-shopping-cart"
         style={subTotal ? { marginRight: 20 } : {}}
       ></i>
-      {subTotal ? <>₹{subTotal}</> : "Cart"}
+      {subTotal ? <>₹{subTotal.toFixed(2)}</> : "Cart"}
       {count > 0 && <div className={classes.text}>{count}</div>}
     </div>
   );

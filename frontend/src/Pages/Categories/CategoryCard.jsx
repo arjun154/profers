@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "@material-ui/core";
+import {
+  Card,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@material-ui/core";
 import styles from "./Categories.module.css";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -11,6 +17,7 @@ export default function CategoryCard() {
   const { category, subcategory } = useParams();
   const { location } = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
+  const [sortValue, setSortValue] = useState("Price - low to high");
 
   useEffect(() => {
     api
@@ -24,11 +31,32 @@ export default function CategoryCard() {
       })
       .catch((err) => console.log(err));
   }, [category, location.name, subcategory]);
-  console.log(data);
+
+  const handleChange = (event) => {
+    setSortValue(event.target.value);
+  };
+
   return (
     <>
       {data.length > 0 ? (
-        <div>
+        <>
+          <div className={styles.box}>
+            <FormControl variant="outlined">
+              <InputLabel>Sort By</InputLabel>
+              <Select value={sortValue} onChange={handleChange} label="Sort By">
+                <MenuItem value="Name(a to z)">Name(a to z)</MenuItem>
+                <MenuItem value="Price - low to high">
+                  Price - low to high
+                </MenuItem>
+                <MenuItem value="Price - high to low">
+                  Price - high to low
+                </MenuItem>
+                <MenuItem value="Discount - high to low">
+                  Discount - high to low
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </div>
           <div className={styles.products}>
             {data.map((item) => (
               <Card
@@ -75,7 +103,7 @@ export default function CategoryCard() {
               </Card>
             ))}
           </div>
-        </div>
+        </>
       ) : (
         <Loader />
       )}
