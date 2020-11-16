@@ -8,6 +8,7 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import { useHistory } from "react-router-dom";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { clearCart } from "../../Redux/cart/actions";
+import api from "../../utils/api";
 
 const useStyles = makeStyles({
   root: {},
@@ -43,10 +44,9 @@ export default function Payment({ address, disabled }) {
     .reduce((a, c) => a + c, 0);
 
   const paymentHandler = async () => {
-    const API_URL = "http://localhost:8000/api/V1/accounts";
-    const orderUrl = `${API_URL}/order?price=${Math.round(subTotal) * 100}`;
+    const orderUrl = `accounts/order?price=${Math.round(subTotal) * 100}`;
 
-    const response = await Axios.post(
+    const response = await api.post(
       orderUrl,
       { items, address },
       {
@@ -62,8 +62,8 @@ export default function Payment({ address, disabled }) {
       handler: async (response) => {
         try {
           const paymentId = response.razorpay_payment_id;
-          const url = `${API_URL}/order/capture/${paymentId}`;
-          const { data: successObj } = await Axios.post(
+          const url = `accounts/order/capture/${paymentId}`;
+          const { data: successObj } = await api.post(
             url,
             {
               total: subTotal,
