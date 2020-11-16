@@ -99,7 +99,9 @@ const Cart = ({ toggleDrawer }) => {
 
       <Box textAlign="center" padding="0.5rem 0">
         <button
-          onClick={() => history.push("/checkout")}
+          onClick={() =>
+            count > 0 ? history.push("/checkout") : history.push("/")
+          }
           className={Styles.btnShop}
         >
           {count > 0 ? (

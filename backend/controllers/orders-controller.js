@@ -102,11 +102,8 @@ const captureOrder = async (req, res) => {
 
     try {
         const { data } = await Axios.post(url, { amount: Number(total), currency: 'INR' })
-
         const { order_id } = data
-
         await User.updateOne({ _id: user._id, "orders.razorPayId": order_id }, { $set: { "orders.$.isConfirmed": true } })
-
         res.json(data)
     } catch (error) {
         res.status(500).json({ message: error.message })

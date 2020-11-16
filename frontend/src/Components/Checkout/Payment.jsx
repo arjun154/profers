@@ -44,10 +44,8 @@ export default function Payment({ address, disabled }) {
     .reduce((a, c) => a + c, 0);
 
   const paymentHandler = async () => {
-    const orderUrl = `accounts/order?price=${Math.round(subTotal) * 100}`;
-
     const response = await api.post(
-      orderUrl,
+      `accounts/order?price=${Math.round(subTotal) * 100}`,
       { items, address },
       {
         headers: { authorization: `Bearer ${token}` },
@@ -62,11 +60,10 @@ export default function Payment({ address, disabled }) {
       handler: async (response) => {
         try {
           const paymentId = response.razorpay_payment_id;
-          const url = `accounts/order/capture/${paymentId}`;
           const { data: successObj } = await api.post(
-            url,
+            `accounts/order/capture/${paymentId}`,
             {
-              total: subTotal,
+              total: Math.round(subTotal) * 100,
             },
             { headers: { authorization: `Bearer ${token}` } }
           );
