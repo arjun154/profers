@@ -1,11 +1,9 @@
 .dataDisplay {
   flex: 5;
-  padding-top: 6%;
-  padding-bottom: 14%;
 }
 
 .orderBox {
-  padding: 40px 30px 0;
+  padding: 0.5rem 1rem;
 }
 
 .box {

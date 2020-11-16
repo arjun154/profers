@@ -4,9 +4,10 @@ import { Link, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import MyAddresses from "./MyAddresses";
 import MyOrders from "./MyOrders";
+import { useSelector } from "react-redux";
 
 const OrdersPage = () => {
-  const [phoneNumber] = useState("8279880948");
+  const { phoneNumber } = useSelector((state) => state.auth);
 
   return (
     <>
