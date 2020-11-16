@@ -62,7 +62,7 @@ export default function PriceBox(props) {
             </div>
             <div className={styles.NewPrice}>
               <span className={styles.sellingPrice}>Selling Price:</span>
-              <span className={styles.price}>₹{mrp}</span>
+              <span className={styles.price}>₹{mrp.toFixed(2)}</span>
             </div>
             <div className={styles.taxDisclamer}>(Inclusive of all taxes)</div>
           </div>

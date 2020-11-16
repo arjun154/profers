@@ -1,4 +1,4 @@
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import React, { useState, useEffect, useMemo } from "react";
 import api from "../../../utils/api";

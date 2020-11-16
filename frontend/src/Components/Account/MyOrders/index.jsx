@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import Styles from "./myOrders.module.css";
 import { useHistory } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import api from "../../../utils/api";
 import { useSelector } from "react-redux";
 import moment from "moment";
 
 export default function Index() {
   const history = useHistory();
-  const [expanded, setExpanded] = React.useState(false);
   const { token } = useSelector((state) => state.auth);
   const [orders, setOrders] = useState([]);
 
@@ -26,7 +24,7 @@ export default function Index() {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  }, [token]);
 
   return (
     <>

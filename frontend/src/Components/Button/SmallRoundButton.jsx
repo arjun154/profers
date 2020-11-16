@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SmallRoundButton({ label, style = {}, onClick }) {
   const classes = useStyles();
-
   return (
     <button onClick={onClick} style={{ ...style }} className={classes.root}>
       {label}

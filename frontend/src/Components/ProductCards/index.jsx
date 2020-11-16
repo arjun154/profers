@@ -4,7 +4,6 @@ import Box from "@material-ui/core/Box";
 import ProductCard from "./ProductCard";
 
 export default function ProductCards({ items }) {
-  // console.log(items);
   return (
     <Box display="flex" flexDirection="row" className={styles.box}>
       {items.map((item) => (

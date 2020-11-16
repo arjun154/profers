@@ -1,4 +1,4 @@
-import { makeStyles, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { setLocation } from "../../../Redux/auth/actions";

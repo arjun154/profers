@@ -1,7 +1,6 @@
 import { Card, makeStyles, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import styles from "./styles.module.css";
-import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import CustomModel from "../CustomModal";
 import CancelIcon from "@material-ui/icons/Cancel";

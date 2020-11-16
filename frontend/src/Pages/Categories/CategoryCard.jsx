@@ -108,9 +108,10 @@ export default function CategoryCard() {
                   <div style={{ float: "left" }}>
                     <div className={styles.price}>
                       ₹
-                      {item.varieties[0].price -
-                        (item.varieties[0].price * item.varieties[0].sale) /
-                          100}
+                      {(
+                        item.varieties[0].price -
+                        (item.varieties[0].price * item.varieties[0].sale) / 100
+                      ).toFixed(2)}
                     </div>
                     <div className={styles.discount}>
                       ₹{item.varieties[0].price}
