@@ -12,13 +12,17 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.common.white,
     color: "#333",
     marginRight: theme.spacing(2),
-    marginLeft: 0,
     width: "100%",
     display: "flex",
+    flex: 1,
     alignItems: "stretch",
     justifyContent: "space-between",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
+      width: "auto",
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginLeft: "3rem",
       width: "auto",
     },
   },

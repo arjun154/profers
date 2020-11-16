@@ -5,7 +5,7 @@ const {
   deleteAddress,
   updateAddress,
 } = require("../controllers/profile-controller");
-const { getAllOrders, order } = require('../controllers/orders-controller')
+const { getAllOrders, order, captureOrder } = require('../controllers/orders-controller')
 const { authMiddleware } = require("../middleware/authMiddleware");
 
 const routes = require("express").Router();
@@ -18,7 +18,8 @@ routes.patch("/addresses/:id", authMiddleware, updateAddress);
 
 //order routes
 routes.get('/getOrders', authMiddleware, getAllOrders)
-routes.get('/order', authMiddleware, order)
+routes.post('/order/capture/:paymentId', authMiddleware, captureOrder)
+routes.post('/order', authMiddleware, order)
 
 // user login/register routes
 routes.get("/:phone", requestOTP);

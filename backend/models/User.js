@@ -73,10 +73,9 @@ const orderSchema = new Schema({
   razorPayReceipt: {
     type: String,
   },
-  address: addressSchema,
+  address: {},
   slot: {
-    type: Date,
-    required: true
+    type: Date
   }
 }, { timestamps: true })
 
