@@ -1,50 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Styles from "./myOrders.module.css";
 import { useHistory } from "react-router-dom";
-import {
-  Box,
-  Collapse,
-  IconButton,
-  StepLabel,
-  Typography,
-} from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import api from "../../../utils/api";
 import { useSelector } from "react-redux";
-import * as timeAgo from "timeago.js";
 import moment from "moment";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-}));
 
 export default function Index() {
   const history = useHistory();
   const [expanded, setExpanded] = React.useState(false);
   const { token } = useSelector((state) => state.auth);
-  const classes = useStyles();
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
