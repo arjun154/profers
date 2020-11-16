@@ -1,7 +1,6 @@
 import React from "react";
 import Styles from "./styles.module.css";
 import { Link, Switch, Route } from "react-router-dom";
-import { useState } from "react";
 import MyAddresses from "./MyAddresses";
 import MyOrders from "./MyOrders";
 import { useSelector } from "react-redux";

@@ -103,7 +103,7 @@ export default function CartListItem({ item, selectedId }) {
             />
 
             <p>x</p>
-            <p>₹{realPriceAfterDiscount}</p>
+            <p>₹{realPriceAfterDiscount.toFixed(2)}</p>
             {sale > 0 && (
               <p style={{ textDecoration: "line-through", color: "#999" }}>
                 ₹{price}

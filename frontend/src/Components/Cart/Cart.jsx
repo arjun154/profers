@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import CartListItem from "./CartListItem";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import CartSummary from "./CartSummary";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
