@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./myOrders.module.css";
 import { useHistory } from "react-router-dom";
-import { Collapse, IconButton } from "@material-ui/core";
+import { Collapse, IconButton, StepLabel } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Index() {
   const history = useHistory();
   const [expanded, setExpanded] = React.useState(false);
+  const [status, setStatus] = React.useEffect("");
   const classes = useStyles();
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -37,60 +38,34 @@ export default function Index() {
   return (
     <>
       <div className={Styles.dataDisplay}>
-        <div className={Styles.top}>
-          <span></span>Placed Yesterday, 3:27 AM
-        </div>
-        <div>
-          <div>Status</div>
-          <div>
-            <div>Super Store - East of Kailash. 159</div>
-            <div>order ID: ORD982347943 . 1 item</div>
-          </div>
-        </div>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <div>
-            <div>
-              <div>Delivery Address</div>
-              <div>Badnaam GAli</div>
+        <div className={Styles.orderBox}>
+          <div className={Styles.box}>
+            <div className={Styles.top}>
+              <div className={Styles.topDate}>Placed Yesterday, 3:27 AM</div>
             </div>
-            <hr />
-            <div>
-              <div>Payment</div>
-              <div>
+            <div className={Styles.miniView}>
+              <div className={Styles.status}>
+                {status ? (
+                  <div className={Styles.confirm}>Confirmed</div>
+                ) : (
+                  <div className={Styles.cancel}>Cancelled</div>
+                )}
+              </div>
+              <div className={Styles.orderID}>
                 <div>
-                  <span>Subtotal</span>
-                  <span>110</span>
+                  Super Store - East of Kailash.{" "}
+                  <span style={{ float: "right" }}>159</span>
                 </div>
-                <div>
-                  <span>Delivery Charges</span>
-                  <span>49</span>
-                </div>
-                <hr />
-                <div>
-                  <span>
-                    Payable Amount<span>(incl. of all taxes)</span>
-                  </span>
-                  <span>159</span>
+                <div className={Styles.font}>
+                  order ID: ORD982347943 .{" "}
+                  <span style={{ float: "right" }}>1 item</span>
                 </div>
               </div>
             </div>
-            <hr />
-            <div>
-              <div>Payment Option</div>
-              <div>Pay on Delivery</div>
-            </div>
           </div>
-        </Collapse>
+        </div>
       </div>
+
       {/* <div className={Styles.dataDisplay}>
         <img
           src="https://grofers.com/images/cart/empty-cart_2x-da3645a.png"

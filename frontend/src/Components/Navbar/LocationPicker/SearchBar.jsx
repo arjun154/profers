@@ -133,13 +133,13 @@ const SearchBar = ({ handleClose }) => {
             placeholder="Type your city (e.g Chennai, Pune)"
           />
         </div>
-        <div className={classes.detectContainer}>
+        {/* <div className={classes.detectContainer}>
           <img
             src="https://www.flaticon.com/svg/static/icons/svg/860/860813.svg"
             alt="location.png"
           />
           <Typography component="h6">Detect </Typography>
-        </div>
+        </div> */}
         <div className={classes.suggestionsPosition}>
           <ul
             style={showList ? listStyles : {}}
