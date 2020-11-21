@@ -1,5 +1,4 @@
-# Profers 
-### A Clone of Grofers
+# Profers
 
 <h1 align="center">
   <br>
